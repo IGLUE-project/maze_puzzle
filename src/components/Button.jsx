@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Button.scss";
 
 export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickButton, mazeMap }) {
@@ -25,6 +25,7 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
       clickButton({ x, y });
     } else {
       console.log("No puedes presionar este botón");
+      return;
     }
   };
 

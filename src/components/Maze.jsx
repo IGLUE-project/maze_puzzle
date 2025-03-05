@@ -1,21 +1,11 @@
 import Button from "./Button";
+import "./Maze.scss";
 
 export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap }) {
   return (
-    <div
-      className="Maze"
-      style={{
-        height: "95%",
-        width: "90%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "1px solid rgb(0, 66, 0)",
-      }}
-    >
+    <div className="Maze">
       {Array.from({ length: maze.size.x }).map((_, x) => (
-        <div key={x} style={{ display: "flex", height: "100%", width: "100%" }}>
+        <div className="row" key={x}>
           {Array.from({ length: maze.size.y }).map((_, y) => (
             <Button
               key={x + " " + y}

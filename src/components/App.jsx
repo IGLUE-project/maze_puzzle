@@ -25,6 +25,7 @@ export default function App() {
   const [prevScreen, setPrevScreen] = useState(PAINTING_SCREEN);
   const [lastButtonClicked, setLastButtonClicked] = useState({});
   const [mazeMap, setMazeMap] = useState([]);
+  const [fail, setFail] = useState(false);
 
   useEffect(() => {
     console.log("useEffect, lets load everything");
@@ -62,13 +63,19 @@ export default function App() {
     //XXX DUDA: a este método solo se le llama cuando sale el boton continue, que es cuando se han resuelto todos los puzzles
     console.log("Solving puzzle", solutionPath);
     let solutionstr = JSON.stringify(solutionPath);
+    const failAudio = document.getElementById("audio_failure");
 
     //XXX DUDA: en el de MalditaER se guarda en localstorage con la clave "safebox_password", quizá sirva por si se vuelve a recargar o se vuelve a la app, que el estado se pierde.
     //lo mejor seria guardar en localstorage todo el estado de la app cuando algo cambia y asi al volver a cargar la app se restaura el estado en el useEffect
 
     escapp.submitPuzzle(GLOBAL_CONFIG.escapp.puzzleId, solutionstr, {}, (success) => {
       if (!success) {
-        onOpenScreen(KEYPAD_SCREEN);
+        failAudio.play();
+        setFail(true);
+        setTimeout(() => {
+          setFail(false);
+          resetButton();
+        }, 700);
       }
     });
   }
@@ -175,6 +182,7 @@ export default function App() {
 
   return (
     <div id="firstnode">
+      <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
       <div
         style={{
           height: "100vh",
@@ -183,6 +191,7 @@ export default function App() {
           display: "flex",
           justifyContent: "center",
         }}
+        className={`${fail ? "fail" : ""}`}
       >
         <MainScreen
           maze={maze}

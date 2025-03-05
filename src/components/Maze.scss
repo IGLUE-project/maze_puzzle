@@ -1,0 +1,22 @@
+.Maze {
+  height: 95%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(0, 66, 0);
+
+  .row {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+}
+.fail .Maze *,
+.fail .Maze {
+  background-color: rgba(255, 0, 0, 0.103) !important;
+  border: 0;
+  outline: 0;
+  box-shadow: none !important;
+}
