@@ -7,18 +7,24 @@ import { GLOBAL_CONFIG } from "../config/config.js";
 import * as I18n from "../vendors/I18n.js";
 import * as LocalStorage from "../vendors/Storage.js";
 
-let escapp;
+import { PAINTING_SCREEN, KEYPAD_SCREEN, SAFE_OPEN_SCREEN, CONTROL_PANEL_SCREEN } from "../constants/constants.jsx";
+import MainScreen from "./MainScreen.jsx";
+import ControlPanel from "./ControlPanel.jsx";
 
-import { PAINTING_SCREEN, SAFE_CLOSED_SCREEN, KEYPAD_SCREEN, SAFE_OPEN_SCREEN } from "../constants/constants.jsx";
+let escapp;
+let maze = {
+  start: { x: 0, y: 0 },
+  end: { x: 3, y: 7 },
+  size: { x: 4, y: 8 },
+};
+let solutionPath = [];
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [screen, setScreen] = useState(PAINTING_SCREEN);
+  const [screen, setScreen] = useState(CONTROL_PANEL_SCREEN);
   const [prevScreen, setPrevScreen] = useState(PAINTING_SCREEN);
-  const [solution, setSolution] = useState("");
-  const divparent = useRef(null);
-  const [appwidth, setAppwidth] = useState(0);
-  const [appheight, setAppheight] = useState(0);
+  const [lastButtonClicked, setLastButtonClicked] = useState({});
+  const [mazeMap, setMazeMap] = useState([]);
 
   useEffect(() => {
     console.log("useEffect, lets load everything");
@@ -36,43 +42,31 @@ export default function App() {
       LocalStorage.removeSetting("played_door");
     };
     escapp = new ESCAPP(GLOBAL_CONFIG.escapp);
-    escapp.validate((success, er_state) => {
-      console.log("ESCAPP validation", success, er_state);
-      try {
-        if (success) {
-          //ha ido bien, restauramos el estado recibido
-          restoreState(er_state);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    });
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    setLoading(false);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+    // escapp.validate((success, er_state) => {
+    //   console.log("ESCAPP validation", success, er_state);
+    //   try {
+    //     if (success) {
+    //       //ha ido bien, restauramos el estado recibido
+    //       restoreState(er_state);
+    //     }
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // });
 
-  useEffect(() => {
-    console.log("useEffect, screen changed");
-    if (prevScreen === KEYPAD_SCREEN && screen === SAFE_CLOSED_SCREEN) {
-      setTimeout(() => onOpenScreen(SAFE_OPEN_SCREEN), 2000);
-    }
-    if (prevScreen !== screen) {
-      handleResize();
-    }
-  }, [screen]);
+    setLoading(false);
+    generateMazeMap();
+  }, []);
 
   function solvePuzzle() {
     //XXX DUDA: a este método solo se le llama cuando sale el boton continue, que es cuando se han resuelto todos los puzzles
-    console.log("Solving puzzle", solution);
+    console.log("Solving puzzle", solutionPath);
+    let solutionstr = JSON.stringify(solutionPath);
 
     //XXX DUDA: en el de MalditaER se guarda en localstorage con la clave "safebox_password", quizá sirva por si se vuelve a recargar o se vuelve a la app, que el estado se pierde.
     //lo mejor seria guardar en localstorage todo el estado de la app cuando algo cambia y asi al volver a cargar la app se restaura el estado en el useEffect
 
-    escapp.submitPuzzle(GLOBAL_CONFIG.escapp.puzzleId, solution, {}, (success) => {
+    escapp.submitPuzzle(GLOBAL_CONFIG.escapp.puzzleId, solutionstr, {}, (success) => {
       if (!success) {
         onOpenScreen(KEYPAD_SCREEN);
       }
@@ -123,20 +117,6 @@ export default function App() {
     }
   }
 
-  function onTryBoxOpen(sol) {
-    console.log("onTryBoxopen with solution:", sol);
-    if (typeof solution !== "string") {
-      return;
-    }
-    setSolution(sol);
-    escapp.checkPuzzle(GLOBAL_CONFIG.escapp.puzzleId, sol, {}, (success, er_state) => {
-      if (success) {
-        onOpenScreen(SAFE_OPEN_SCREEN);
-      }
-      return success;
-    });
-  }
-
   function onOpenScreen(newscreen_name) {
     console.log("Opening screen", newscreen_name);
     setPrevScreen(screen);
@@ -144,18 +124,6 @@ export default function App() {
     saveState();
   }
 
-  function handleResize() {
-    let divparentwidth = divparent.current ? divparent.current.offsetWidth : 0;
-    let divparentheight = divparent.current ? divparent.current.offsetHeight : 0;
-    console.log("Div parent size", divparentwidth, divparentheight);
-
-    setAppwidth(divparentwidth);
-    setAppheight(divparentheight);
-  }
-
-  if (loading) {
-    return "Loading...";
-  }
   /*
   //COMENTADO PORQUE NO SE USA EN EL EJEMPLO, serviría para saber si se han superado todos los puzzles 
   // y entonces se muestra un mensaje u otro en la pantalla final
@@ -173,9 +141,59 @@ export default function App() {
   }
   */
   let solvedAllPuzzles = true;
+
+  const clickButton = (button) => {
+    console.log("Button clicked", button);
+    solutionPath.push(button);
+    mazeMap[button.x][button.y] = true;
+    setMazeMap([...mazeMap]);
+    let isEndButton = false;
+    if (button.x === maze.end.x && button.y === maze.end.y) {
+      solvePuzzle();
+      isEndButton = true;
+    }
+    setLastButtonClicked({ ...button, isEndButton });
+  };
+  const resetButton = () => {
+    console.log("Reset button clicked");
+    solutionPath = [];
+    setLastButtonClicked({});
+    generateMazeMap();
+  };
+
+  function generateMazeMap() {
+    let mazeMap = [];
+    for (let x = 0; x < maze.size.x; x++) {
+      let row = [];
+      for (let y = 0; y < maze.size.y; y++) {
+        row.push(false);
+      }
+      mazeMap.push(row);
+    }
+    setMazeMap(mazeMap);
+  }
+
   return (
-    <div id="firstnode" ref={divparent}>
-      hola mundo!
+    <div id="firstnode">
+      <div
+        style={{
+          height: "100vh",
+          width: "80%",
+          backgroundColor: "#2c3e50",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <MainScreen
+          maze={maze}
+          lastButtonClicked={lastButtonClicked}
+          clickButton={clickButton}
+          resetButton={resetButton}
+          mazeMap={mazeMap}
+          show={screen === KEYPAD_SCREEN}
+        />
+        <ControlPanel show={screen === CONTROL_PANEL_SCREEN} onOpenScreen={onOpenScreen} />
+      </div>
     </div>
   );
 }
