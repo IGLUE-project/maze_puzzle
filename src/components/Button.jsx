@@ -56,6 +56,7 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
       {isStart && <div className="start"></div>}
       {isEnd && <div className="end"></div>}
       {incomingDirection && <div className={`line incoming ${incomingDirection}`} />}
+      {incomingDirection && outgoingDirection && <div className="dot" />}
       {outgoingDirection && <div className={`line outgoing ${outgoingDirection}`} />}
     </div>
   );

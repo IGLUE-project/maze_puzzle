@@ -12,6 +12,13 @@
   position: relative;
   box-shadow: inset 0px 0px 0px 1px rgb(0, 66, 0);
 
+  .dot {
+    height: 3%;
+    width: 3%;
+    background-color: aqua;
+    border-radius: 50%;
+  }
+
   &:hover:not(.pressed) {
     filter: brightness(0.9);
   }
