@@ -11,6 +11,7 @@ export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap }) 
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        border: "1px solid rgb(0, 66, 0)",
       }}
     >
       {Array.from({ length: maze.size.x }).map((_, x) => (

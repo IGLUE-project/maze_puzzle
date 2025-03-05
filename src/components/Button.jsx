@@ -3,10 +3,16 @@ import "./Button.scss";
 
 export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickButton, mazeMap }) {
   const [pressed, setPressed] = useState(false);
+  const [incomingDirection, setIncomingDirection] = useState(""); // Dirección de entrada
+  const [outgoingDirection, setOutgoingDirection] = useState(""); // Dirección de salida
+
   const pressButton = () => {
     if (lastButtonClicked.isEndButton) {
-      console.log("laberinto terminado");
-    } else if (!pressed && isStart) {
+      console.log("Laberinto terminado");
+      return;
+    }
+
+    if (!pressed && isStart) {
       clickButton({ x, y });
     } else if (
       !pressed &&
@@ -15,21 +21,41 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
         (lastButtonClicked.x === x + 1 && lastButtonClicked.y === y) ||
         (lastButtonClicked.x === x - 1 && lastButtonClicked.y === y))
     ) {
+      setIncomingDirection(getDirection(lastButtonClicked)); // Marca de dónde vino
       clickButton({ x, y });
     } else {
-      console.log("You can't press this button");
+      console.log("No puedes presionar este botón");
     }
   };
 
-  useEffect(() => {
-    mazeMap[x] && mazeMap[x][y] ? setPressed(true) : setPressed(false);
-  }, [mazeMap]);
-  return (
-    <div onClick={(e) => pressButton()} className={`Button ${pressed ? "pressed" : ""}`}>
-      {!isStart && !isEnd && (pressed ? <span>X</span> : <span>O</span>)}
+  function getDirection(previousButton) {
+    if (previousButton.y < y) return "left";
+    if (previousButton.y > y) return "right";
+    if (previousButton.x < x) return "top";
+    if (previousButton.x > x) return "bottom";
+    console.error("Botón ilegal pulsado");
+    return "";
+  }
 
-      {isStart && <span>start</span>}
-      {isEnd && <span>end</span>}
+  useEffect(() => {
+    if (mazeMap[x] && mazeMap[x][y]) {
+      setPressed(true);
+      if (!outgoingDirection && (lastButtonClicked.x !== x || lastButtonClicked.y !== y)) {
+        setOutgoingDirection(getDirection(lastButtonClicked)); // Marca hacia dónde va
+      }
+    } else {
+      setPressed(false);
+      setIncomingDirection("");
+      setOutgoingDirection("");
+    }
+  }, [mazeMap]);
+
+  return (
+    <div onClick={pressButton} className={`Button ${pressed ? "pressed" : ""}`}>
+      {isStart && <div className="start"></div>}
+      {isEnd && <div className="end"></div>}
+      {incomingDirection && <div className={`line incoming ${incomingDirection}`} />}
+      {outgoingDirection && <div className={`line outgoing ${outgoingDirection}`} />}
     </div>
   );
 }

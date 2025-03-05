@@ -9,6 +9,9 @@
   background-color: green;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
+  position: relative;
+  box-shadow: inset 0px 0px 0px 1px rgb(0, 66, 0);
+
   &:hover:not(.pressed) {
     filter: brightness(0.9);
   }
@@ -16,5 +19,57 @@
   &.pressed {
     box-shadow: inset 0px 0px 0px 10px rgb(0, 66, 0);
     background-color: rgb(0, 78, 0);
+  }
+
+  .start,
+  .end {
+    height: 20%;
+    width: 20%;
+    background-color: aqua;
+  }
+
+  .startLine,
+  .endLine {
+    width: 50%;
+    height: 5px;
+    background-color: aqua;
+  }
+
+  /* 🔹 Estilos de las líneas de conexión */
+  .line {
+    position: absolute;
+    background-color: aqua;
+  }
+
+  .incoming,
+  .outgoing {
+    &.top {
+      width: 5px;
+      height: 50%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.bottom {
+      width: 5px;
+      height: 50%;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.left {
+      width: 50%;
+      height: 5px;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &.right {
+      width: 50%;
+      height: 5px;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }
