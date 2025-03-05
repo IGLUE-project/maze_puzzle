@@ -1,5 +1,5 @@
 import Maze from "./Maze";
-import "./MainScreen.scss";
+import "./../assets/scss/MainScreen.scss";
 
 export default function MainScreen({ maze, lastButtonClicked, clickButton, resetButton, mazeMap, show }) {
   const ClickButton = (button) => {
@@ -9,7 +9,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
   };
 
   return (
-    <div id="MainScreen" className={"screen_wrapper" + (show ? "" : " screen_hidden")} style={{}}>
+    <div id="MainScreen" className={"screen_wrapper" + (show ? "" : " screen_hidden")}>
       <audio id="audio_click" src="sounds/click_button.wav" autostart="false" preload="auto" />
       <div className="frame">
         <div className="border-frame">
@@ -20,18 +20,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
             clickButton={ClickButton}
             mazeMap={mazeMap}
           />
-          <img
-            src="/src/components/pngegg.png"
-            className="reset"
-            onClick={resetButton}
-            style={{
-              width: "100px",
-              height: "100px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          />
+          <img src="/src/assets/images/reset.png" className="reset" onClick={resetButton} />
         </div>
         <div className="bar"></div>
       </div>

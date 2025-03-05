@@ -1,5 +1,5 @@
 import Button from "./Button";
-import "./Maze.scss";
+import "./../assets/scss/Maze.scss";
 
 export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap }) {
   return (

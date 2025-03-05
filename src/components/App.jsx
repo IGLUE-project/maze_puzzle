@@ -183,16 +183,7 @@ export default function App() {
   return (
     <div id="firstnode">
       <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
-      <div
-        style={{
-          height: "100vh",
-          width: "80%",
-          backgroundColor: "#2c3e50",
-          display: "flex",
-          justifyContent: "center",
-        }}
-        className={`${fail ? "fail" : ""}`}
-      >
+      <div className={`main-background ${fail ? "fail" : ""}`}>
         <MainScreen
           maze={maze}
           lastButtonClicked={lastButtonClicked}

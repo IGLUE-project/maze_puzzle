@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import "./Button.scss";
+import "./../assets/scss/Button.scss";
 
 export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickButton, mazeMap }) {
   const [pressed, setPressed] = useState(false);
-  const [incomingDirection, setIncomingDirection] = useState(""); // Dirección de entrada
-  const [outgoingDirection, setOutgoingDirection] = useState(""); // Dirección de salida
+  const [incomingDirection, setIncomingDirection] = useState("");
+  const [outgoingDirection, setOutgoingDirection] = useState("");
 
   const pressButton = () => {
     if (lastButtonClicked.isEndButton) {
@@ -21,7 +21,7 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
         (lastButtonClicked.x === x + 1 && lastButtonClicked.y === y) ||
         (lastButtonClicked.x === x - 1 && lastButtonClicked.y === y))
     ) {
-      setIncomingDirection(getDirection(lastButtonClicked)); // Marca de dónde vino
+      setIncomingDirection(getDirection(lastButtonClicked));
       clickButton({ x, y });
     } else {
       console.log("No puedes presionar este botón");
@@ -42,7 +42,7 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
     if (mazeMap[x] && mazeMap[x][y]) {
       setPressed(true);
       if (!outgoingDirection && (lastButtonClicked.x !== x || lastButtonClicked.y !== y)) {
-        setOutgoingDirection(getDirection(lastButtonClicked)); // Marca hacia dónde va
+        setOutgoingDirection(getDirection(lastButtonClicked));
       }
     } else {
       setPressed(false);

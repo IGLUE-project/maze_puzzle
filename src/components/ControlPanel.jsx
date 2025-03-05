@@ -1,5 +1,5 @@
 import React from "react";
-import "./ControlPanel.scss";
+import "./../assets/scss/ControlPanel.scss";
 import { KEYPAD_SCREEN } from "../constants/constants";
 
 const ControlPanel = ({ show, onOpenScreen }) => {
