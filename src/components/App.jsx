@@ -43,17 +43,17 @@ export default function App() {
       LocalStorage.removeSetting("played_door");
     };
     escapp = new ESCAPP(GLOBAL_CONFIG.escapp);
-    // escapp.validate((success, er_state) => {
-    //   console.log("ESCAPP validation", success, er_state);
-    //   try {
-    //     if (success) {
-    //       //ha ido bien, restauramos el estado recibido
-    //       restoreState(er_state);
-    //     }
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // });
+    escapp.validate((success, er_state) => {
+      console.log("ESCAPP validation", success, er_state);
+      try {
+        if (success) {
+          //ha ido bien, restauramos el estado recibido
+          restoreState(er_state);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    });
 
     setLoading(false);
     generateMazeMap();
@@ -76,6 +76,8 @@ export default function App() {
           setFail(false);
           resetButton();
         }, 700);
+      } else {
+        alert("ta bien");
       }
     });
   }
