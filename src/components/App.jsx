@@ -59,10 +59,15 @@ export default function App() {
     generateMazeMap();
   }, []);
 
+  function parseSolution(solutionPath) {
+    return solutionPath.map((step) => `${step.x},${step.y}`).join(";");
+  }
+
   function solvePuzzle() {
+    let solutionstr = parseSolution(solutionPath);
+
     //XXX DUDA: a este método solo se le llama cuando sale el boton continue, que es cuando se han resuelto todos los puzzles
     console.log("Solving puzzle", solutionPath);
-    let solutionstr = JSON.stringify(solutionPath);
     const failAudio = document.getElementById("audio_failure");
 
     //XXX DUDA: en el de MalditaER se guarda en localstorage con la clave "safebox_password", quizá sirva por si se vuelve a recargar o se vuelve a la app, que el estado se pierde.
@@ -93,8 +98,8 @@ export default function App() {
       let lastPuzzleSolved = Math.max.apply(null, er_state.puzzlesSolved);
       if (lastPuzzleSolved >= GLOBAL_CONFIG.escapp.puzzleId) {
         //puzzle superado, abrimos la caja fuerte
-        setScreen(SAFE_OPEN_SCREEN);
-        setPrevScreen(PAINTING_SCREEN);
+        setScreen(CONTROL_PANEL_SCREEN);
+        setPrevScreen(CONTROL_PANEL_SCREEN);
       } else {
         //puzzle no superado, miramos en localStorage en qué pantalla estábamos
         let localstateToRestore = LocalStorage.getSetting("app_state");
