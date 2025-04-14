@@ -1,10 +1,10 @@
 import React from "react";
-import "./../assets/scss/ControlPanel.scss";
+import "./../assets/scss/Doors.scss";
 import { KEYPAD_SCREEN } from "../constants/constants";
 
-const ControlPanel = ({ show, onOpenScreen }) => {
+const OpenedDoors = ({ show, onOpenScreen }) => {
   return (
-    <div id="ControlPanel" className={"screen_wrapper" + (show ? "" : " screen_hidden")}>
+    <div id="OpenedDoors" className={"screen_wrapper" + (show ? "" : " screen_hidden")}>
       <div className="panel" onClick={() => onOpenScreen(KEYPAD_SCREEN)}>
         <div className="top-box">
           <div className="inner-box"></div>
@@ -16,4 +16,4 @@ const ControlPanel = ({ show, onOpenScreen }) => {
   );
 };
 
-export default ControlPanel;
+export default OpenedDoors;

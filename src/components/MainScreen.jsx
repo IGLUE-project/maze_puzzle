@@ -1,7 +1,7 @@
 import Maze from "./Maze";
 import "./../assets/scss/MainScreen.scss";
 
-export default function MainScreen({ maze, lastButtonClicked, clickButton, resetButton, mazeMap, show }) {
+export default function MainScreen({ maze, lastButtonClicked, clickButton, resetButton, mazeMap, show, config }) {
   const ClickButton = (button) => {
     clickButton(button);
     const clickAudio = document.getElementById("audio_click");
@@ -11,7 +11,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
   return (
     <div id="MainScreen" className={"screen_wrapper" + (show ? "" : " screen_hidden")}>
       <audio id="audio_click" src="sounds/click_button.wav" autostart="false" preload="auto" />
-      <div className="frame">
+      <div className={`${config.theme?.keypadImg ? "image" : "frame"}`}>
         <div className="border-frame">
           <Maze
             className="inner-frame"
@@ -20,9 +20,10 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
             clickButton={ClickButton}
             mazeMap={mazeMap}
           />
-          <img src="/src/assets/images/reset.png" className="reset" onClick={resetButton} />
+          {/* <img src="/src/assets/images/reset.png" className="reset" onClick={resetButton} /> */}
         </div>
         <div className="bar"></div>
+        <img className="keypad" src={config.theme?.openKeypadImg} alt="" />
       </div>
     </div>
   );
