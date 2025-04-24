@@ -33,7 +33,7 @@ export const THEME_ASSETS = {
   },
   [THEMES.FUTURISTIC]: {
     backgroundImg: "/src/assets/images/futuristic_background.png",
-    openbackgroundImg: "/src/assets/images/futuristic_background.png",
+    openbackgroundImg: "/src/assets/images/futuristic_background_open.png",
     keypadImg: "/src/assets/images/futuristic_controlpanel.png",
     openKeypadImg: "/src/assets/images/futuristic_controlpanel_open.png",
     clickAudio: "sounds/click_button.wav",

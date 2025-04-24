@@ -20,9 +20,9 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
             clickButton={ClickButton}
             mazeMap={mazeMap}
           />
+          <div className="background"></div>
           {/* <img src="/src/assets/images/reset.png" className="reset" onClick={resetButton} /> */}
         </div>
-        <div className="bar"></div>
         <img className="keypad" src={config.theme?.openKeypadImg} alt="" />
       </div>
     </div>

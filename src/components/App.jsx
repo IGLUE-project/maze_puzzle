@@ -13,11 +13,7 @@ import Doors from "./Doors.jsx";
 import OpenedDoors from "./OpenedDoors.jsx";
 
 let escapp;
-let maze = {
-  start: { x: 0, y: 0 },
-  end: { x: 3, y: 7 },
-  size: { x: 4, y: 8 },
-};
+
 let solutionPath = [];
 const initialConfig = {
   maze: {
@@ -26,7 +22,6 @@ const initialConfig = {
     size: { x: 4, y: 8 },
   },
   config: {
-    nWheels: 4,
     theme: THEMES.FUTURISTIC,
   },
 };
@@ -41,7 +36,7 @@ export default function App() {
 
   useEffect(() => {
     console.log("useEffect, lets load everything");
-    //localStorage.clear();  //For development, clear local storage (comentar y descomentar para desarrollo)
+    localStorage.clear(); //For development, clear local storage (comentar y descomentar para desarrollo)
     I18n.init(GLOBAL_CONFIG);
     LocalStorage.init(GLOBAL_CONFIG.localStorageKey);
     GLOBAL_CONFIG.escapp.onNewErStateCallback = (er_state) => {
@@ -72,7 +67,7 @@ export default function App() {
   }, []);
 
   function parseSolution(solutionPath) {
-    return solutionPath.map((step) => `${step.x},${step.y}`).join(";");
+    return solutionPath.map((step) => `${step.x + 1},${step.y + 1}`).join(";");
   }
 
   function loadConfiguration({ config, maze }) {
@@ -90,7 +85,7 @@ export default function App() {
   function solvePuzzle() {
     let solutionstr = parseSolution(solutionPath);
 
-    console.log("Solving puzzle", solutionPath);
+    console.log("Solving puzzle", solutionstr);
     const failAudio = document.getElementById("audio_failure");
 
     escapp.submitPuzzle(GLOBAL_CONFIG.escapp.puzzleId, solutionstr, {}, (success) => {
@@ -102,7 +97,7 @@ export default function App() {
           resetButton();
         }, 700);
       } else {
-        alert("ta bien");
+        setScreen(DOORS_OPENED_SCREEN);
       }
     });
   }
@@ -114,7 +109,6 @@ export default function App() {
       if (lastPuzzleSolved >= GLOBAL_CONFIG.escapp.puzzleId) {
         //puzzle superado, abrimos la caja fuerte
         setScreen(DOORS_SCREEN);
-        setPrevScreen(DOORS_SCREEN);
       } else {
         //puzzle no superado, miramos en localStorage en qué pantalla estábamos
         let localstateToRestore = LocalStorage.getSetting("app_state");

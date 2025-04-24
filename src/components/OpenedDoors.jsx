@@ -1,16 +1,15 @@
 import React from "react";
-import "./../assets/scss/Doors.scss";
-import { KEYPAD_SCREEN } from "../constants/constants";
+import "./../assets/scss/OpenedDoors.scss";
 
-const OpenedDoors = ({ show, onOpenScreen }) => {
+const OpenedDoors = ({ show, config }) => {
   return (
     <div id="OpenedDoors" className={"screen_wrapper" + (show ? "" : " screen_hidden")}>
-      <div className="panel" onClick={() => onOpenScreen(KEYPAD_SCREEN)}>
-        <div className="top-box">
-          <div className="inner-box"></div>
-        </div>
-        <div className="middle-bar"></div>
-        <div className="bottom-box"></div>
+      <div
+        className="background"
+        style={config.theme?.openbackgroundImg ? { backgroundImage: `url(${config.theme?.openbackgroundImg})` } : {}}
+      >
+        <img className="keypad" src={config.theme?.keypadImg} alt="" />
+        <div className="doors"></div>
       </div>
     </div>
   );
