@@ -89,6 +89,9 @@ $bg-color: #1d4d84;
     }
   }
 }
+.fail div.background {
+  background-color: #ff0000b2 !important;
+}
 
 .reset:hover {
   cursor: pointer;
@@ -99,5 +102,8 @@ $bg-color: #1d4d84;
   height: 100px;
   display: flex;
   align-items: center;
+  z-index: 10;
   justify-content: center;
+  position: absolute;
+  right: 15%;
 }
