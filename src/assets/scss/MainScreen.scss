@@ -92,18 +92,21 @@ $bg-color: #1d4d84;
 .fail div.background {
   background-color: #ff0000b2 !important;
 }
+.correct div.background {
+  background-color: #08c502 !important;
+}
 
 .reset:hover {
   cursor: pointer;
 }
 
 .reset {
-  width: 100px;
-  height: 100px;
+  width: 5%;
   display: flex;
   align-items: center;
   z-index: 10;
   justify-content: center;
   position: absolute;
-  right: 15%;
+  right: 12.5%;
+  aspect-ratio: 1;
 }

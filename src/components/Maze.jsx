@@ -3,24 +3,31 @@ import "./../assets/scss/Maze.scss";
 
 export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap }) {
   return (
-    <div className="Maze">
-      {maze &&
-        Array.from({ length: maze.size.x }).map((_, x) => (
-          <div className="row" key={x}>
-            {Array.from({ length: maze.size.y }).map((_, y) => (
-              <Button
-                key={x + " " + y}
-                isStart={x === maze.start.x && y === maze.start.y}
-                isEnd={x === maze.end.x && y === maze.end.y}
-                x={x}
-                y={y}
-                lastButtonClicked={lastButtonClicked}
-                clickButton={clickButton}
-                mazeMap={mazeMap}
-              />
-            ))}
-          </div>
-        ))}
-    </div>
+    <>
+      <div className="Maze">
+        {maze &&
+          Array.from({ length: maze.size.x }).map((_, x) => (
+            <div className="row" key={x}>
+              {Array.from({ length: maze.size.y }).map((_, y) => (
+                <Button
+                  key={x + " " + y}
+                  isStart={x === maze.start.x && y === maze.start.y}
+                  isEnd={x === maze.end.x && y === maze.end.y}
+                  x={x}
+                  y={y}
+                  lastButtonClicked={lastButtonClicked}
+                  clickButton={clickButton}
+                  mazeMap={mazeMap}
+                />
+              ))}
+            </div>
+          ))}
+      </div>
+      <div className="victory">
+        <div>
+          <h2>Has ganado</h2>
+        </div>
+      </div>
+    </>
   );
 }

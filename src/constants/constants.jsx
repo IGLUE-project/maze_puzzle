@@ -16,6 +16,7 @@ export const THEME_ASSETS = {
     openKeypadImg: "/src/assets/images/ancient_button.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
+    correctAudio: "sounds/correct.wav",
   },
   [THEMES.BASIC]: {
     backgroundImg: "",
@@ -23,6 +24,7 @@ export const THEME_ASSETS = {
     openKeypadImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
+    correctAudio: "sounds/correct.wav",
   },
   [THEMES.CONTEMPORARY]: {
     backgroundImg: "",
@@ -30,6 +32,7 @@ export const THEME_ASSETS = {
     openKeypadImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
+    correctAudio: "sounds/correct.wav",
   },
   [THEMES.FUTURISTIC]: {
     backgroundImg: "/src/assets/images/futuristic_background.png",
@@ -38,5 +41,6 @@ export const THEME_ASSETS = {
     openKeypadImg: "/src/assets/images/futuristic_controlpanel_open.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
+    correctAudio: "sounds/correct.wav",
   },
 };

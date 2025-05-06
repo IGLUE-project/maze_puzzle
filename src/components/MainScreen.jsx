@@ -18,13 +18,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
       <audio id="audio_reset" src="sounds/reset.wav" autostart="false" preload="auto" />
       <div className={`${config.theme?.keypadImg ? "image" : "frame"}`}>
         <div className="border-frame">
-          <Maze
-            className="inner-frame"
-            maze={maze}
-            lastButtonClicked={lastButtonClicked}
-            clickButton={ClickButton}
-            mazeMap={mazeMap}
-          />
+          <Maze maze={maze} lastButtonClicked={lastButtonClicked} clickButton={ClickButton} mazeMap={mazeMap} />
           <div className="background"></div>
         </div>
         <img src="/src/assets/images/reset.png" className="reset" onClick={reset} />

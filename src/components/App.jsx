@@ -31,7 +31,7 @@ export default function App() {
   const [screen, setScreen] = useState(DOORS_SCREEN);
   const [lastButtonClicked, setLastButtonClicked] = useState({});
   const [mazeMap, setMazeMap] = useState([]);
-  const [fail, setFail] = useState(false);
+  const [failClass, setFailClass] = useState("");
   const [config, setConfig] = useState({});
 
   useEffect(() => {
@@ -87,17 +87,20 @@ export default function App() {
 
     console.log("Solving puzzle", solutionstr);
     const failAudio = document.getElementById("audio_failure");
+    const correctAudio = document.getElementById("audio_correct");
 
     escapp.submitPuzzle(GLOBAL_CONFIG.escapp.puzzleId, solutionstr, {}, (success) => {
       if (!success) {
         failAudio.play();
-        setFail(true);
+        setFailClass("fail");
         setTimeout(() => {
-          setFail(false);
+          setFailClass("");
           resetButton();
         }, 700);
       } else {
-        setScreen(DOORS_OPENED_SCREEN);
+        correctAudio.play();
+        setFailClass("correct");
+        // setScreen(DOORS_OPENED_SCREEN);
       }
     });
   }
@@ -179,7 +182,9 @@ export default function App() {
   return (
     <div id="firstnode">
       <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
-      <div className={`main-background ${fail ? "fail" : ""}`}>
+      <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
+      <audio id="audio_correct" src="sounds/correct.wav" autostart="false" preload="auto" />
+      <div className={`main-background ${failClass}`}>
         <MainScreen
           maze={config.maze}
           lastButtonClicked={lastButtonClicked}
