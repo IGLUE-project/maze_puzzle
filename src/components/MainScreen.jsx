@@ -16,7 +16,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
     <div id="MainScreen" className={"screen_wrapper" + (show ? "" : " screen_hidden")}>
       <audio id="audio_click" src="sounds/click_button.wav" autostart="false" preload="auto" />
       <audio id="audio_reset" src="sounds/reset.wav" autostart="false" preload="auto" />
-      <div className={`${config.theme?.keypadImg ? "image" : "frame"}`}>
+      <div className={`${config.theme?.openKeypadImg ? "image" : "frame"}`}>
         <div className="border-frame">
           <Maze maze={maze} lastButtonClicked={lastButtonClicked} clickButton={ClickButton} mazeMap={mazeMap} />
           <div className="background"></div>

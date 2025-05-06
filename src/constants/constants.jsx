@@ -11,33 +11,24 @@ export const THEMES = {
 
 export const THEME_ASSETS = {
   [THEMES.ANCIENT]: {
-    backgroundImg: "/src/assets/images/ancient_background.png",
-    keypadImg: "/src/assets/images/ancient_wheel.png",
-    openKeypadImg: "/src/assets/images/ancient_button.png",
+    openKeypadImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.BASIC]: {
-    backgroundImg: "",
-    keypadImg: "",
     openKeypadImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.CONTEMPORARY]: {
-    backgroundImg: "",
-    keypadImg: "",
     openKeypadImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.FUTURISTIC]: {
-    backgroundImg: "/src/assets/images/futuristic_background.png",
-    openbackgroundImg: "/src/assets/images/futuristic_background_open.png",
-    keypadImg: "/src/assets/images/futuristic_controlpanel.png",
     openKeypadImg: "/src/assets/images/futuristic_controlpanel_open.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",

@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./../assets/scss/app.scss";
 import "./../assets/scss/modal.scss";
 
@@ -7,10 +6,8 @@ import { GLOBAL_CONFIG } from "../config/config.js";
 import * as I18n from "../vendors/I18n.js";
 import * as LocalStorage from "../vendors/Storage.js";
 
-import { KEYPAD_SCREEN, DOORS_SCREEN, DOORS_OPENED_SCREEN, THEMES, THEME_ASSETS } from "../constants/constants.jsx";
+import { KEYPAD_SCREEN, THEMES, THEME_ASSETS } from "../constants/constants.jsx";
 import MainScreen from "./MainScreen.jsx";
-import Doors from "./Doors.jsx";
-import OpenedDoors from "./OpenedDoors.jsx";
 
 let escapp;
 
@@ -28,7 +25,7 @@ const initialConfig = {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [screen, setScreen] = useState(DOORS_SCREEN);
+  const [screen, setScreen] = useState(KEYPAD_SCREEN);
   const [lastButtonClicked, setLastButtonClicked] = useState({});
   const [mazeMap, setMazeMap] = useState([]);
   const [failClass, setFailClass] = useState("");
@@ -100,7 +97,6 @@ export default function App() {
       } else {
         correctAudio.play();
         setFailClass("correct");
-        // setScreen(DOORS_OPENED_SCREEN);
       }
     });
   }
@@ -111,7 +107,6 @@ export default function App() {
       let lastPuzzleSolved = Math.max.apply(null, er_state.puzzlesSolved);
       if (lastPuzzleSolved >= GLOBAL_CONFIG.escapp.puzzleId) {
         //puzzle superado, abrimos la caja fuerte
-        setScreen(DOORS_SCREEN);
       } else {
         //puzzle no superado, miramos en localStorage en qué pantalla estábamos
         let localstateToRestore = LocalStorage.getSetting("app_state");
@@ -182,7 +177,6 @@ export default function App() {
   return (
     <div id="firstnode">
       <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
-      <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
       <audio id="audio_correct" src="sounds/correct.wav" autostart="false" preload="auto" />
       <div className={`main-background ${failClass}`}>
         <MainScreen
@@ -194,8 +188,6 @@ export default function App() {
           show={screen === KEYPAD_SCREEN}
           config={config}
         />
-        <Doors show={screen === DOORS_SCREEN} onOpenScreen={onOpenScreen} config={config} />
-        <OpenedDoors show={screen === DOORS_OPENED_SCREEN} onOpenScreen={onOpenScreen} config={config} />
       </div>
     </div>
   );
