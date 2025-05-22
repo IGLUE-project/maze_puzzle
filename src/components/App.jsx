@@ -157,6 +157,9 @@ export default function App() {
 
   const resetButton = () => {
     console.log("Reset button clicked");
+    if (solutionPath.length > 0) {
+      document.getElementById("audio_reset").play();
+    }
     solutionPath = [];
     setLastButtonClicked({});
     generateMazeMap(config.maze);
@@ -178,6 +181,7 @@ export default function App() {
     <div id="firstnode">
       <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
       <audio id="audio_correct" src="sounds/correct.wav" autostart="false" preload="auto" />
+      <audio id="audio_reset" src="sounds/reset.wav" autostart="false" preload="auto" />
       <div className={`main-background ${failClass}`}>
         <MainScreen
           maze={config.maze}

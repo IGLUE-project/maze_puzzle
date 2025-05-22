@@ -29,18 +29,13 @@
 }
 
 .image {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   img.keypad {
     z-index: 5;
     position: fixed;
-    height: 100%;
-    width: 100%;
+    object-fit: fill;
   }
 
   .border-frame {
@@ -51,14 +46,9 @@
     justify-content: space-evenly;
     align-items: center;
 
-    div.Maze {
-      height: 70%;
-      width: 70%;
-    }
-
     div.background {
-      width: 95%;
-      height: 95%;
+      width: 90%;
+      height: 90%;
       border-radius: 15px;
       display: flex;
       justify-content: space-evenly;
@@ -87,10 +77,6 @@
   }
 }
 
-.reset:hover {
-  cursor: pointer;
-}
-
 .reset {
   width: 5%;
   display: flex;
@@ -100,16 +86,18 @@
   position: absolute;
   right: 12.5%;
   aspect-ratio: 1;
+  transition: filter 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+  }
 }
 
 .button-reset {
   z-index: 10;
   display: inline-block;
-  height: 100px;
-  width: 100px;
-  margin-left: -50px;
 
-  border-radius: 190px;
+  border-radius: 50%;
   border: 3px solid #1c2233;
   background: #4c5d8b;
   text-align: center;
@@ -122,19 +110,16 @@
   box-shadow: 0 0 0 0 #b1b6c9, 0 0 0 0 #1c2233, 0 0 0 0 #b1b6c9, 0 0 0 0 #1c2233;
 
   .label {
-    line-height: 100px;
-    font-size: 22px;
     font-weight: bold;
     font-style: normal;
     transition: all 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
-
   &:hover {
     border-color: #b1b6c9;
-    box-shadow: 0 0 0 7px #b1b6c9, 0 0 0 10px #1c2233, 0 0 0 17px #b1b6c9, 0 0 0 20px #1c2233;
-  }
-
-  &:active {
-    box-shadow: 0 0 0 15px #b1b6c9, 0 0 0 18px #1c2233, 0 0 0 17px #b1b6c9, 0 0 0 20px #1c2233;
   }
 }
