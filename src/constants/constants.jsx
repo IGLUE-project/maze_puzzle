@@ -12,24 +12,28 @@ export const THEMES = {
 export const THEME_ASSETS = {
   [THEMES.ANCIENT]: {
     openKeypadImg: "",
+    resetImg: "/src/assets/images/reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.BASIC]: {
-    openKeypadImg: "",
+    openKeypadImg: "/src/assets/images/contemporary_controlpanel_open.png",
+    resetImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.CONTEMPORARY]: {
-    openKeypadImg: "",
+    openKeypadImg: "/src/assets/images/contemporary_controlpanel_open.png",
+    resetImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.FUTURISTIC]: {
     openKeypadImg: "/src/assets/images/futuristic_controlpanel_open.png",
+    resetImg: "/src/assets/images/reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",

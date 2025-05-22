@@ -2,7 +2,7 @@ import Button from "./Button";
 import "./../assets/scss/Maze.scss";
 import { GLOBAL_CONFIG } from "../config/config.js";
 
-export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap }) {
+export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, theme }) {
   return (
     <>
       <div className="Maze">
@@ -19,6 +19,7 @@ export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap }) 
                   lastButtonClicked={lastButtonClicked}
                   clickButton={clickButton}
                   mazeMap={mazeMap}
+                  theme={theme}
                 />
               ))}
             </div>

@@ -19,7 +19,7 @@ const initialConfig = {
     size: { x: 4, y: 8 },
   },
   config: {
-    theme: THEMES.FUTURISTIC,
+    theme: THEMES.CONTEMPORARY,
   },
 };
 
@@ -33,7 +33,7 @@ export default function App() {
 
   useEffect(() => {
     console.log("useEffect, lets load everything");
-    localStorage.clear(); //For development, clear local storage (comentar y descomentar para desarrollo)
+    // localStorage.clear(); //For development, clear local storage (comentar y descomentar para desarrollo)
     I18n.init(GLOBAL_CONFIG);
     LocalStorage.init(GLOBAL_CONFIG.localStorageKey);
     GLOBAL_CONFIG.escapp.onNewErStateCallback = (er_state) => {
@@ -47,17 +47,17 @@ export default function App() {
       LocalStorage.removeSetting("played_door");
     };
     escapp = new ESCAPP(GLOBAL_CONFIG.escapp);
-    escapp.validate((success, er_state) => {
-      console.log("ESCAPP validation", success, er_state);
-      try {
-        if (success) {
-          //ha ido bien, restauramos el estado recibido
-          restoreState(er_state);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    });
+    // escapp.validate((success, er_state) => {
+    //   console.log("ESCAPP validation", success, er_state);
+    //   try {
+    //     if (success) {
+    //       //ha ido bien, restauramos el estado recibido
+    //       restoreState(er_state);
+    //     }
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // });
 
     setLoading(false);
     loadConfiguration(initialConfig);
