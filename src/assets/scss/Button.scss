@@ -30,7 +30,7 @@
     position: absolute;
   }
 
-  &.futuristic {
+  &.FUTURISTIC {
     background-color: green;
     box-shadow: inset 0px 0px 0px 1px rgb(0, 66, 0);
     &.pressed {
@@ -45,8 +45,7 @@
       background-color: aqua;
     }
   }
-  &.basic,
-  &.contemporary {
+  &.STANDARD {
     background-color: #4c5d8b;
     box-shadow: inset 0px 0px 0px 1px #1c2233;
     &.pressed {

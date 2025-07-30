@@ -1,6 +1,5 @@
-import Button from "./Button";
 import "./../assets/scss/Maze.scss";
-import { GLOBAL_CONFIG } from "../config/config.js";
+import Button from "./Button";
 
 export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, theme }) {
   return (
@@ -27,7 +26,7 @@ export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, th
       </div>
       <div className="victory">
         <div>
-          <h2>{GLOBAL_CONFIG.message}</h2>
+          <h2>{theme.message}</h2>
         </div>
       </div>
     </>

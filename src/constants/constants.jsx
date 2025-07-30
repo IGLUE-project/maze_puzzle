@@ -1,41 +1,38 @@
-export const DOORS_SCREEN = "doors";
-export const DOORS_OPENED_SCREEN = "doors_opened";
-export const KEYPAD_SCREEN = "keypad";
+export const DEFAULT_APP_SETTINGS = {
+  skin: "FUTURISTIC",
+  actionWhenLoadingIfSolved: true,
+  message: undefined,
+  backgroundImg: "images/futuristic_controlpanel_open.png",
+  resetImg: "images/reset.png",
+  clickAudio: "sounds/click_button.wav",
+  failAudio: "sounds/wrong.wav",
+  correctAudio: "sounds/correct.wav",
+};
 
 export const THEMES = {
-  BASIC: "basic",
-  FUTURISTIC: "futuristic",
-  CONTEMPORARY: "contemporary",
-  ANCIENT: "ancient",
+  FUTURISTIC: "FUTURISTIC",
+  STANDARD: "STANDARD",
 };
 
 export const THEME_ASSETS = {
-  [THEMES.ANCIENT]: {
-    openKeypadImg: "",
-    resetImg: "/src/assets/images/reset.png",
-    clickAudio: "sounds/click_button.wav",
-    failAudio: "sounds/wrong.wav",
-    correctAudio: "sounds/correct.wav",
-  },
-  [THEMES.BASIC]: {
-    openKeypadImg: "/src/assets/images/contemporary_controlpanel_open.png",
-    resetImg: "",
-    clickAudio: "sounds/click_button.wav",
-    failAudio: "sounds/wrong.wav",
-    correctAudio: "sounds/correct.wav",
-  },
-  [THEMES.CONTEMPORARY]: {
-    openKeypadImg: "/src/assets/images/contemporary_controlpanel_open.png",
+  [THEMES.STANDARD]: {
+    backgroundImg: "images/standard_controlpanel_open.png",
     resetImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.FUTURISTIC]: {
-    openKeypadImg: "/src/assets/images/futuristic_controlpanel_open.png",
-    resetImg: "/src/assets/images/reset.png",
+    backgroundImg: "images/futuristic_controlpanel_open.png",
+    resetImg: "images/reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
 };
+
+export const ESCAPP_CLIENT_SETTINGS = {
+  imagesPath: "./images/",
+};
+
+export const MAIN_SCREEN = "MAIN_SCREEN";

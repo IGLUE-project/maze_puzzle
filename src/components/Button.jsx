@@ -8,7 +8,6 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
 
   const pressButton = () => {
     if (lastButtonClicked.isEndButton) {
-      console.log("Laberinto terminado");
       return;
     }
 
@@ -48,7 +47,7 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
   }, [mazeMap]);
 
   return (
-    <div onClick={pressButton} className={`Button ${pressed ? "pressed " : ""}${theme.name}`}>
+    <div onClick={pressButton} className={`Button ${pressed ? "pressed " : ""}${theme.skin}`}>
       {isStart && <div className="start"></div>}
       {isEnd && <div className="end"></div>}
       {incomingDirection && <div className={`line incoming ${incomingDirection}`} />}
