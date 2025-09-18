@@ -15,7 +15,6 @@
 }
 .fail .Maze *,
 .fail .Maze {
-  background-color: rgba(255, 0, 0, 0.226) !important;
   border: 0;
   outline: 0;
   box-shadow: none !important;
@@ -37,21 +36,52 @@
   z-index: -1;
 }
 .futuristic .Maze {
-  border: 1px solid rgb(0, 66, 0);
 }
 .basic .Maze,
 .contemporary .Maze {
-  border: 1px solid rgb(0, 57, 83);
+  .row {
+    margin-bottom: 2px;
+  }
 }
 .correct {
   .Maze {
     display: none;
-  }
-
+   
+  };
+   .button-reset {
+      display: none;
+    }
   .victory {
     opacity: 1;
     visibility: visible;
     transform: scale(1);
     z-index: 5;
   }
+}
+
+.text-instr {
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  &.ancient {
+    color: black;
+  }
+  &.futuristic {
+    color: rgb(203, 185, 243);
+  }
+  &.basic {
+    color: rgb(68, 67, 70);
+  }
+}
+.text-start {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  margin: 0.5rem 0 0 0;
+}
+.text-end {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin: 0 0 0.5rem 0;
 }

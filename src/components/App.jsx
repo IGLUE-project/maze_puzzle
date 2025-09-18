@@ -19,7 +19,7 @@ const initialConfig = {
     size: { x: 4, y: 8 },
   },
   config: {
-    theme: THEMES.CONTEMPORARY,
+    theme: THEMES.FUTURISTIC,
   },
 };
 
@@ -182,7 +182,7 @@ export default function App() {
       <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
       <audio id="audio_correct" src="sounds/correct.wav" autostart="false" preload="auto" />
       <audio id="audio_reset" src="sounds/reset.wav" autostart="false" preload="auto" />
-      <div className={`main-background ${failClass}`}>
+      <div className={`main-background ${failClass} correct`}>
         <MainScreen
           maze={config.maze}
           lastButtonClicked={lastButtonClicked}

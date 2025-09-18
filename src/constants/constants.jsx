@@ -11,14 +11,14 @@ export const THEMES = {
 
 export const THEME_ASSETS = {
   [THEMES.ANCIENT]: {
-    openKeypadImg: "",
+    openKeypadImg: "/src/assets/images/retro_controlpanel_open.png",
     resetImg: "/src/assets/images/reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.BASIC]: {
-    openKeypadImg: "/src/assets/images/contemporary_controlpanel_open.png",
+    openKeypadImg: "/src/assets/images/basic_controlpanel_open.png",
     resetImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
@@ -33,7 +33,7 @@ export const THEME_ASSETS = {
   },
   [THEMES.FUTURISTIC]: {
     openKeypadImg: "/src/assets/images/futuristic_controlpanel_open.png",
-    resetImg: "/src/assets/images/reset.png",
+    resetImg: "/src/assets/images/futuristic_reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",

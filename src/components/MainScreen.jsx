@@ -55,7 +55,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
   return (
     <div
       id="MainScreen"
-      className={`screen_wrapper${show ? "" : " screen_hidden"} ${config.theme?.name}`}
+      className={`screen_wrapper${show ? "" : " screen_hidden"} ${config.theme?.name} ${config.theme?.name}-feedback`}
       style={{ width: size.width, height: size.height }}
     >
       <audio id="audio_click" src="sounds/click_button.wav" autostart="false" preload="auto" />
@@ -64,6 +64,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
         style={{ width: size.width, height: size.height }}
       >
         <div className="border-frame">
+       
           <Maze
             maze={maze}
             lastButtonClicked={lastButtonClicked}
@@ -86,13 +87,13 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
             }}
             onMouseDown={() => setActive(true)}
             onMouseUp={() => setActive(false)}
-            style={{
-              width: size.width * 0.07,
-              height: size.width * 0.07,
-              marginLeft: -size.width * 0.035,
-              boxShadow: active ? boxShadowActive : hovered ? boxShadowHover : undefined,
-              borderColor: hovered ? "#b1b6c9" : "#1c2233",
-            }}
+            // style={{
+            //   width: size.width * 0.07,
+            //   height: size.width * 0.07,
+            //   marginLeft: -size.width * 0.035,
+            //   boxShadow: active ? boxShadowActive : hovered ? boxShadowHover : undefined,
+            //   borderColor: hovered ? "#b1b6c9" : "#1c2233",
+            // }}
           >
             <div className="label" style={{ fontSize: size.width * 0.015 + "px" }}>
               Reset

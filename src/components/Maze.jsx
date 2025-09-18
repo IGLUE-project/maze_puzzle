@@ -6,6 +6,8 @@ export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, th
   return (
     <>
       <div className="Maze">
+        
+   <p className={`text-instr text-start ${theme?.name} `} >start</p>
         {maze &&
           Array.from({ length: maze.size.x }).map((_, x) => (
             <div className="row" key={x}>
@@ -24,7 +26,10 @@ export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, th
               ))}
             </div>
           ))}
+             <p className={`text-instr text-end ${theme?.name} `}>end</p>
       </div>
+            
+
       <div className="victory">
         <div>
           <h2>{GLOBAL_CONFIG.message}</h2>
