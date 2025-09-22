@@ -2,10 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import "./../assets/scss/Button.scss";
 import { THEMES } from "../constants/constants";
 
-export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickButton, mazeMap, theme }) {
+export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickButton, mazeMap, theme, size }) {
   const [pressed, setPressed] = useState(false);
   const [incomingDirection, setIncomingDirection] = useState("");
   const [outgoingDirection, setOutgoingDirection] = useState("");
+  const [buttonSize, setbuttonSize] = useState(0);
+
+  useEffect(() => {
+    const _buttonSize = Math.min(
+      size.width / (mazeMap[0] ? mazeMap[0].length : 1),
+      size.height / (mazeMap ? mazeMap.length : 1),
+    );
+    setbuttonSize(_buttonSize * 0.5);
+  }, [size]);
 
   const pressButton = () => {
     if (lastButtonClicked.isEndButton) {
@@ -48,7 +57,11 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
   }, [mazeMap]);
 
   return (
-    <div onClick={pressButton} className={`Button ${pressed ? "pressed " : ""}${theme.skin}`}>
+    <div
+      onClick={pressButton}
+      style={{ height: buttonSize, width: buttonSize, margin: buttonSize * 0.05 }}
+      className={`Button ${pressed ? "pressed " : ""}${theme.skin.toLowerCase()}`}
+    >
       {isStart && <div className="start"></div>}
       {isEnd &&
         (theme.skin === THEMES.RETRO ? <img src={theme.pointImg} className="end" /> : <div className="end"></div>)}

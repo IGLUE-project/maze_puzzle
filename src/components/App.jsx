@@ -6,7 +6,8 @@ import MainScreen from "./MainScreen.jsx";
 import { GlobalContext } from "./GlobalContext.jsx";
 
 export default function App() {
-  const { escapp, setEscapp, appSettings, setAppSettings, Storage, setStorage, Utils, I18n } = useContext(GlobalContext);
+  const { escapp, setEscapp, appSettings, setAppSettings, Storage, setStorage, Utils, I18n } =
+    useContext(GlobalContext);
   const hasExecutedEscappValidation = useRef(false);
 
   const [solution, setSolution] = useState([]);
@@ -253,7 +254,9 @@ export default function App() {
   return (
     <div
       id="global_wrapper"
-      className={`${appSettings !== null && typeof appSettings.skin === "string" ? appSettings.skin.toLowerCase() : ""}`}
+      className={`${
+        appSettings !== null && typeof appSettings.skin === "string" ? appSettings.skin.toLowerCase() : ""
+      }`}
     >
       {renderScreens(screens)}
     </div>

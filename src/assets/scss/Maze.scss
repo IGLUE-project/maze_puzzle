@@ -1,6 +1,4 @@
 .Maze {
-  height: 70%;
-  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,19 +7,17 @@
 
   .row {
     display: flex;
-    height: 100%;
-    width: 100%;
+    justify-content: center;
   }
 }
 .fail .Maze *,
 .fail .Maze {
-  background-color: rgba(255, 0, 0, 0.226) !important;
   border: 0;
   outline: 0;
   box-shadow: none !important;
 }
-.fail .RETRO .Maze *,
-.fail .RETRO .Maze {
+.fail .retro .Maze *,
+.fail .retro .Maze {
   background-color: #3b220a27 !important;
   border: 0;
   outline: 0;
@@ -43,20 +39,17 @@
   border-radius: 10px;
   z-index: -1;
 }
-.FUTURISTIC .Maze {
-  border: 1px solid rgb(0, 66, 0);
-}
-.STANDARD .Maze {
-  border: 1px solid rgb(0, 57, 83);
-}
-.RETRO .Maze {
+
+.retro .Maze {
   border: 2px solid #522e0e;
 }
 .correct {
   .Maze {
     display: none;
   }
-
+  .button-reset {
+    display: none;
+  }
   .victory {
     opacity: 1;
     visibility: visible;
@@ -67,4 +60,31 @@
       text-align: center;
     }
   }
+}
+
+.text-instr {
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  &.ancient {
+    color: black;
+  }
+  &.futuristic {
+    color: rgb(203, 185, 243);
+  }
+  &.basic {
+    color: rgb(68, 67, 70);
+  }
+}
+.text-start {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  margin: 0.5rem 0 0 0;
+}
+.text-end {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin: 0 0 0.5rem 0;
 }

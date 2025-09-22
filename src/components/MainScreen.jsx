@@ -2,26 +2,12 @@ import Maze from "./Maze";
 import "./../assets/scss/MainScreen.scss";
 import { useEffect, useState } from "react";
 
-export default function MainScreen({ maze, lastButtonClicked, clickButton, resetButton, mazeMap, show, config }) {
+export default function MainScreen({ maze, lastButtonClicked, clickButton, resetButton, mazeMap, config }) {
   const [size, setSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const [hovered, setHovered] = useState(false);
-  const [active, setActive] = useState(false);
 
-  const boxShadowHover = `
-    0 0 0 ${size.width * 0.007 * 0.8}px #b1b6c9,
-    0 0 0 ${size.width * 0.01 * 0.8}px #1c2233,
-    0 0 0 ${size.width * 0.017 * 0.8}px #b1b6c9,
-    0 0 0 ${size.width * 0.02 * 0.8}px #1c2233
-  `;
-  const boxShadowActive = `
-    0 0 0 ${size.width * 0.015 * 0.8}px #b1b6c9,
-    0 0 0 ${size.width * 0.018 * 0.8}px #1c2233,
-    0 0 0 ${size.width * 0.017 * 0.8}px #b1b6c9,
-    0 0 0 ${size.width * 0.02 * 0.8}px #1c2233
-  `;
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
@@ -55,7 +41,7 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
   return (
     <div
       id="MainScreen"
-      className={` ${config?.skin}`}
+      className={` ${config?.skin.toLowerCase()} ${config?.skin.toLowerCase()}-feedback`}
       style={{ width: size.width, height: size.height, position: "absolute" }}
     >
       <audio id="audio_click" src={config.clickAudio} autostart="false" preload="auto" />
@@ -70,30 +56,14 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
             clickButton={ClickButton}
             mazeMap={mazeMap}
             theme={config}
+            size={size}
           />
           <div className="background"></div>
         </div>
         {config?.resetImg ? (
           <img src={config?.resetImg} draggable={false} className="reset" onClick={reset} />
         ) : (
-          <div
-            className="button-reset"
-            onClick={reset}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => {
-              setHovered(false);
-              setActive(false);
-            }}
-            onMouseDown={() => setActive(true)}
-            onMouseUp={() => setActive(false)}
-            style={{
-              width: size.width * 0.07,
-              height: size.width * 0.07,
-              marginLeft: -size.width * 0.035,
-              boxShadow: active ? boxShadowActive : hovered ? boxShadowHover : undefined,
-              borderColor: hovered ? "#b1b6c9" : "#1c2233",
-            }}
-          >
+          <div className="button-reset" onClick={reset}>
             <div className="label" style={{ fontSize: size.width * 0.015 + "px" }}>
               Reset
             </div>
