@@ -20,6 +20,13 @@
   outline: 0;
   box-shadow: none !important;
 }
+.fail .RETRO .Maze *,
+.fail .RETRO .Maze {
+  background-color: #3b220a27 !important;
+  border: 0;
+  outline: 0;
+  box-shadow: none !important;
+}
 .victory {
   opacity: 0;
   visibility: hidden;
@@ -41,6 +48,9 @@
 }
 .STANDARD .Maze {
   border: 1px solid rgb(0, 57, 83);
+}
+.RETRO .Maze {
+  border: 2px solid #522e0e;
 }
 .correct {
   .Maze {

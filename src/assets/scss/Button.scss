@@ -38,10 +38,10 @@
       background-color: rgb(0, 78, 0);
     }
 
-    .line,
-    .end,
-    .start,
-    .dot {
+    div.line,
+    div.end,
+    div.start,
+    div.dot {
       background-color: aqua;
     }
   }
@@ -53,11 +53,28 @@
       background-color: #293249;
     }
 
-    .line,
-    .end,
-    .start,
-    .dot {
+    div.line,
+    div.end,
+    div.start,
+    div.dot {
       background-color: #647d9b;
+    }
+  }
+  &.RETRO {
+    box-shadow: inset 0px 0px 2px 3px #522e0e;
+    &:hover:not(.pressed) {
+      background-color: #3b220a70;
+    }
+    img.end {
+      width: 60%;
+      height: 60%;
+    }
+
+    div.line,
+    div.end,
+    div.start,
+    div.dot {
+      background-color: #ca3328c4;
     }
   }
 

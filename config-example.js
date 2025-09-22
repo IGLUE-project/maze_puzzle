@@ -2,7 +2,7 @@
 
 export let ESCAPP_APP_SETTINGS = {
   //Settings that can be specified by the authors
-  skin: "FUTURISTIC", //skin can be "STANDARD" or "FUTURISTIC".
+  skin: "FUTURISTIC", //skin can be "STANDARD", "RETRO" or "FUTURISTIC".
   //backgroundImg: "NONE", //background can be "NONE" or a URL.
   // actionAfterSolve: "SHOW_MESSAGE", //actionAfterSolve can be "NONE" or "SHOW_MESSAGE".
   message: "¡Has superado el reto!",
@@ -14,7 +14,6 @@ export let ESCAPP_APP_SETTINGS = {
   },
 
   //Settings that will be automatically specified by the Escapp server
-  solutionLength: 3,
   locale: "es",
 
   escappClientSettings: {

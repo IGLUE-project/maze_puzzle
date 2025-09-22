@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./../assets/scss/Button.scss";
+import { THEMES } from "../constants/constants";
 
 export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickButton, mazeMap, theme }) {
   const [pressed, setPressed] = useState(false);
@@ -49,7 +50,8 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
   return (
     <div onClick={pressButton} className={`Button ${pressed ? "pressed " : ""}${theme.skin}`}>
       {isStart && <div className="start"></div>}
-      {isEnd && <div className="end"></div>}
+      {isEnd &&
+        (theme.skin === THEMES.RETRO ? <img src={theme.pointImg} className="end" /> : <div className="end"></div>)}
       {incomingDirection && <div className={`line incoming ${incomingDirection}`} />}
       {incomingDirection && outgoingDirection && <div className="dot" />}
       {outgoingDirection && <div className={`line outgoing ${outgoingDirection}`} />}

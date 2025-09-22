@@ -12,6 +12,7 @@ export const DEFAULT_APP_SETTINGS = {
 export const THEMES = {
   FUTURISTIC: "FUTURISTIC",
   STANDARD: "STANDARD",
+  RETRO: "RETRO",
 };
 
 export const THEME_ASSETS = {
@@ -26,6 +27,14 @@ export const THEME_ASSETS = {
     backgroundImg: "images/futuristic_controlpanel_open.png",
     resetImg: "images/reset.png",
     clickAudio: "sounds/click_button.wav",
+    failAudio: "sounds/wrong.wav",
+    correctAudio: "sounds/correct.wav",
+  },
+  [THEMES.RETRO]: {
+    backgroundImg: "images/retro-panel.png",
+    pointImg: "images/start-point.png",
+    resetImg: "images/reset.png",
+    clickAudio: "sounds/pencil.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",
   },

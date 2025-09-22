@@ -53,11 +53,24 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
   };
 
   return (
-    <div id="MainScreen" className={` ${config?.skin}`} style={{ width: size.width, height: size.height, position: "absolute" }}>
-      <audio id="audio_click" src="sounds/click_button.wav" autostart="false" preload="auto" />
-      <div className={`${config?.backgroundImg ? "image" : "frame"}`} style={{ width: size.width, height: size.height }}>
+    <div
+      id="MainScreen"
+      className={` ${config?.skin}`}
+      style={{ width: size.width, height: size.height, position: "absolute" }}
+    >
+      <audio id="audio_click" src={config.clickAudio} autostart="false" preload="auto" />
+      <div
+        className={`${config?.backgroundImg ? "image" : "frame"}`}
+        style={{ width: size.width, height: size.height }}
+      >
         <div className="border-frame">
-          <Maze maze={maze} lastButtonClicked={lastButtonClicked} clickButton={ClickButton} mazeMap={mazeMap} theme={config} />
+          <Maze
+            maze={maze}
+            lastButtonClicked={lastButtonClicked}
+            clickButton={ClickButton}
+            mazeMap={mazeMap}
+            theme={config}
+          />
           <div className="background"></div>
         </div>
         {config?.resetImg ? (
@@ -86,7 +99,13 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
             </div>
           </div>
         )}
-        <img className="keypad" src={config?.backgroundImg} alt="" draggable={false} style={{ width: size.width, height: size.height }} />
+        <img
+          className="keypad"
+          src={config?.backgroundImg}
+          alt=""
+          draggable={false}
+          style={{ width: size.width, height: size.height }}
+        />
       </div>
     </div>
   );
