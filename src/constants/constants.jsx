@@ -33,7 +33,7 @@ export const THEME_ASSETS = {
   [THEMES.RETRO]: {
     backgroundImg: "images/retro-panel.png",
     pointImg: "images/start-point.png",
-    resetImg: "images/reset.png",
+    resetImg: "images/retro_reset.png",
     clickAudio: "sounds/pencil.wav",
     failAudio: "sounds/wrong.wav",
     correctAudio: "sounds/correct.wav",

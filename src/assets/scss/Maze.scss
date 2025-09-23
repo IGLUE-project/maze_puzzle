@@ -40,9 +40,7 @@
   z-index: -1;
 }
 
-.retro .Maze {
-  border: 2px solid #522e0e;
-}
+
 .correct {
   .Maze {
     display: none;
@@ -66,8 +64,8 @@
   width: 100%;
   text-transform: uppercase;
   font-weight: bold;
-  &.ancient {
-    color: black;
+  &.retro {
+    color: rgb(37, 5, 9);
   }
   &.futuristic {
     color: rgb(203, 185, 243);
@@ -76,12 +74,7 @@
     color: rgb(68, 67, 70);
   }
 }
-.text-start {
-  display: flex;
-  align-items: start;
-  justify-content: start;
-  margin: 0.5rem 0 0 0;
-}
+
 .text-end {
   display: flex;
   align-items: end;

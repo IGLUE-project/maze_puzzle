@@ -1,3 +1,9 @@
+  .retro {
+    .Button {
+      border-radius: 0px;
+    }
+  }
+
 .Button {
   border: none;
   height: 95%;
@@ -8,6 +14,7 @@
   justify-content: center;
   font-size: 3vh;
   border-radius: 4px;
+
 
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
@@ -72,20 +79,26 @@
     }
   }
   &.retro {
-    box-shadow: inset 0px 0px 2px 3px #522e0e;
+    
+    border: 2px solid #68492f;
     &:hover:not(.pressed) {
-      background-color: #3b220a70;
+      background-color: #99612d70;
     }
     img.end {
       width: 60%;
       height: 60%;
+      margin-top: -10px
+    }
+.line {
+      background-color: #c70b05;
+      opacity: 0.8;
+
     }
 
-    div.line,
     div.end,
     div.start,
     div.dot {
-      background-color: #ca3328c4;
+      background-color: #ca2216;
     }
   }
 
@@ -119,18 +132,18 @@
   //    }
   // }
 
-  .incoming,
+ .incoming,
   .outgoing {
     opacity: 0.2;
     &.top {
-      width: 2px;
+      width: 5px;
       height: 50%;
-      top: 0;
+      top: 0px;
       left: 50%;
       transform: translateX(-50%);
     }
     &.bottom {
-      width: 2px;
+      width: 5px;
       height: 50%;
       bottom: 0;
       left: 50%;
@@ -138,17 +151,55 @@
     }
     &.left {
       width: 50%;
-      height: 2px;
-      left: 0;
+      height: 5px;
+      left: 0px;
       top: 50%;
+      
       transform: translateY(-50%);
     }
     &.right {
       width: 50%;
-      height: 2px;
+      height: 5px;
       right: 0;
       top: 50%;
       transform: translateY(-50%);
     }
   }
+
+
+.retro {
+  .incoming,
+  .outgoing {
+    opacity: 0.2;
+    &.top {
+      width: 5px;
+      height: 40%;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.bottom {
+      width: 5px;
+      height: 40%;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.left {
+      width: 40%;
+      height: 5px;
+      left: 4px;
+      top: 50%;
+      
+      transform: translateY(-50%);
+    }
+    &.right {
+      width: 40%;
+      height: 5px;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
 }
