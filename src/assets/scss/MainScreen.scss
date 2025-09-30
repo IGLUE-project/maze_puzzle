@@ -86,10 +86,6 @@
   }
 }
 
-// .correct div.background {
-//   background-color: #08c502 !important;
-// }
-
 .futuristic {
   .background {
     background-color: rgb(9, 10, 32);
@@ -106,10 +102,10 @@
   }
 }
 .retro {
-    .reset {
-     width: 12%;
-    }
+  .reset {
+    width: 12%;
   }
+}
 
 .reset {
   width: 7%;
@@ -121,7 +117,7 @@
   right: 4.5%;
   aspect-ratio: 1;
   transition: filter 0.3s ease;
-  
+
   &:hover {
     cursor: pointer;
     filter: brightness(1.4);

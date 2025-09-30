@@ -11,6 +11,7 @@ export default function App() {
   const hasExecutedEscappValidation = useRef(false);
 
   const [solution, setSolution] = useState([]);
+  const [parsedSolution, setParsedSolution] = useState("");
   const [loading, setLoading] = useState(true);
   const [screen, setScreen] = useState(MAIN_SCREEN);
   const prevScreen = useRef(screen);
@@ -114,7 +115,7 @@ export default function App() {
     // Merge _appSettings with DEFAULT_APP_SETTINGS_SKIN to obtain final app settings
     _appSettings = Utils.deepMerge(DEFAULT_APP_SETTINGS_SKIN, _appSettings);
 
-    generateMazeMap(_appSettings.maze);
+    generateMazeMap(_appSettings.mazeHeight, _appSettings.mazeWidth);
 
     //Init internacionalization module
     I18n.init(_appSettings);
@@ -138,12 +139,11 @@ export default function App() {
     return _solutionPath.map((step) => `${step.x + 1},${step.y + 1}`).join(";");
   }
 
-  function solvePuzzle() {
-    let parsedSolution = parseSolution(solution);
+  function solvePuzzle(_solution) {
+    let parsedSolution = parseSolution(_solution);
+    setParsedSolution(parsedSolution);
 
     Utils.log("solution: ", parsedSolution);
-
-    setSolution([]);
 
     return checkResult(parsedSolution);
   }
@@ -156,17 +156,22 @@ export default function App() {
       if (success) {
         setSolved(true);
         correctAudio.play();
-        setFailClass("correct");
-        try {
-          setTimeout(() => {
-            submitPuzzleSolution(_solution);
-          }, 2000);
-        } catch (e) {
-          Utils.log("Error in checkNextPuzzle", e);
+        if (appSettings.actionAfterSolve === "SHOW_MESSAGE") {
+          setFailClass("correct");
+        } else {
+          try {
+            setTimeout(() => {
+              submitPuzzleSolution(_solution);
+            }, 2000);
+          } catch (e) {
+            Utils.log("Error in checkNextPuzzle", e);
+          }
         }
       } else {
         failAudio.play();
         setFailClass("fail");
+        setSolution([]);
+
         setTimeout(() => {
           setFailClass("");
           resetButton();
@@ -175,9 +180,10 @@ export default function App() {
     });
   }
   function submitPuzzleSolution(_solution) {
-    Utils.log("Submit puzzle solution", _solution);
-    escapp.submitNextPuzzle(_solution, {}, (success, erState) => {
-      Utils.log("Solution submitted to Escapp", _solution, success, erState);
+    const sol = _solution ? _solution : parsedSolution;
+    Utils.log("Submit puzzle solution", sol);
+    escapp.submitNextPuzzle(sol, {}, (success, erState) => {
+      Utils.log("Solution submitted to Escapp", sol, success, erState);
     });
   }
 
@@ -187,8 +193,8 @@ export default function App() {
     mazeMap[button.x][button.y] = true;
     setMazeMap([...mazeMap]);
     let isEndButton = false;
-    if (button.x === appSettings.maze.end.x && button.y === appSettings.maze.end.y) {
-      solvePuzzle();
+    if (button.x + 1 === appSettings.endPoint.x && button.y + 1 === appSettings.endPoint.y) {
+      solvePuzzle(newSolution);
       isEndButton = true;
     }
     setLastButtonClicked({ ...button, isEndButton });
@@ -200,14 +206,14 @@ export default function App() {
     }
     setSolution([]);
     setLastButtonClicked({});
-    generateMazeMap(appSettings.maze);
+    generateMazeMap(appSettings.mazeHeight, appSettings.mazeWidth);
   };
 
-  function generateMazeMap(maze) {
+  function generateMazeMap(mazeHeight, mazeWidth) {
     let _mazeMap = [];
-    for (let x = 0; x < maze.size.x; x++) {
+    for (let x = 0; x < mazeWidth; x++) {
       let row = [];
-      for (let y = 0; y < maze.size.y; y++) {
+      for (let y = 0; y < mazeHeight; y++) {
         row.push(false);
       }
       _mazeMap.push(row);
@@ -234,17 +240,17 @@ export default function App() {
       id: MAIN_SCREEN,
       content: (
         <div className={`main-background ${failClass}`}>
-          <audio id="audio_failure" src="sounds/wrong.wav" autostart="false" preload="auto" />
-          <audio id="audio_correct" src="sounds/correct.wav" autostart="false" preload="auto" />
-          <audio id="audio_reset" src="sounds/reset.wav" autostart="false" preload="auto" />
+          <audio id="audio_failure" src={appSettings?.failAudio} autostart="false" preload="auto" />
+          <audio id="audio_correct" src={appSettings?.correctAudio} autostart="false" preload="auto" />
+          <audio id="audio_reset" src={appSettings?.resetAudio} autostart="false" preload="auto" />
 
           <MainScreen
-            maze={appSettings?.maze}
             lastButtonClicked={lastButtonClicked}
             clickButton={clickButton}
             resetButton={resetButton}
             mazeMap={mazeMap}
             config={appSettings}
+            sendSolution={submitPuzzleSolution}
           />
         </div>
       ),

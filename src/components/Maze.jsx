@@ -1,19 +1,19 @@
 import "./../assets/scss/Maze.scss";
 import Button from "./Button";
+import MessageScreen from "./MessageScreen";
 
-export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, theme, size }) {
+export default function Maze({ lastButtonClicked, clickButton, mazeMap, theme, size, sendSolution }) {
   return (
     <>
       <div className="Maze">
-
-        {maze &&
-          Array.from({ length: maze.size.x }).map((_, x) => (
-            <div className="row" key={x}>
-              {Array.from({ length: maze.size.y }).map((_, y) => (
+        {theme &&
+          Array.from({ length: theme.mazeHeight }).map((_, y) => (
+            <div className="row" key={y}>
+              {Array.from({ length: theme.mazeWidth }).map((_, x) => (
                 <Button
                   key={x + " " + y}
-                  isStart={x === maze.start.x && y === maze.start.y}
-                  isEnd={x === maze.end.x && y === maze.end.y}
+                  isStart={x + 1 === theme.startPoint.x && y + 1 === theme.startPoint.y}
+                  isEnd={x + 1 === theme.endPoint.x && y + 1 === theme.endPoint.y}
                   x={x}
                   y={y}
                   lastButtonClicked={lastButtonClicked}
@@ -25,13 +25,10 @@ export default function Maze({ maze, lastButtonClicked, clickButton, mazeMap, th
               ))}
             </div>
           ))}
-       
       </div>
 
       <div className="victory">
-        <div>
-          <h2>{theme.message}</h2>
-        </div>
+        <MessageScreen sendSolution={sendSolution} />
       </div>
     </>
   );

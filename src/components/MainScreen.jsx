@@ -1,8 +1,8 @@
-import Maze from "./Maze";
-import "./../assets/scss/MainScreen.scss";
 import { useEffect, useState } from "react";
+import "./../assets/scss/MainScreen.scss";
+import Maze from "./Maze";
 
-export default function MainScreen({ maze, lastButtonClicked, clickButton, resetButton, mazeMap, config }) {
+export default function MainScreen({ lastButtonClicked, clickButton, resetButton, mazeMap, config, sendSolution }) {
   const [size, setSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -51,12 +51,12 @@ export default function MainScreen({ maze, lastButtonClicked, clickButton, reset
       >
         <div className="border-frame">
           <Maze
-            maze={maze}
             lastButtonClicked={lastButtonClicked}
             clickButton={ClickButton}
             mazeMap={mazeMap}
             theme={config}
             size={size}
+            sendSolution={sendSolution}
           />
           <div className="background"></div>
         </div>

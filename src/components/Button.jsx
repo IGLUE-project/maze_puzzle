@@ -10,8 +10,8 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
 
   useEffect(() => {
     const _buttonSize = Math.min(
-      size.width / (mazeMap[0] ? mazeMap[0].length : 1),
-      size.height / (mazeMap ? mazeMap.length : 1),
+      size.width / (mazeMap ? mazeMap.length : 1),
+      size.height / (mazeMap[0] ? mazeMap[0].length : 1),
     );
     setbuttonSize(_buttonSize * 0.5);
   }, [size]);
@@ -36,10 +36,10 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
   };
 
   function getDirection(previousButton) {
-    if (previousButton.y < y) return "left";
-    if (previousButton.y > y) return "right";
-    if (previousButton.x < x) return "top";
-    if (previousButton.x > x) return "bottom";
+    if (previousButton.x < x) return "left";
+    if (previousButton.x > x) return "right";
+    if (previousButton.y < y) return "top";
+    if (previousButton.y > y) return "bottom";
     return "";
   }
 
@@ -56,51 +56,71 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
     }
   }, [mazeMap]);
 
-
   let marginValue;
   switch (theme.skin) {
     case "RETRO":
-      console.log("es retro");
       marginValue = -1;
       break;
     case "STANDARD":
-      console.log("es basico");
       marginValue = buttonSize * 0.05;
       break;
     case "FUTURISTIC":
-      console.log("es futurista");
       marginValue = buttonSize * 0.01;
       break;
-  };
+  }
   return (
     <div
       onClick={pressButton}
-      style={{ height: buttonSize, width: buttonSize, margin: marginValue}}
+      style={{ height: buttonSize, width: buttonSize, margin: marginValue }}
       className={`Button ${pressed ? "pressed " : ""}${theme.skin.toLowerCase()}`}
     >
-      {isStart && <div className="start">
-        <p
-          className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
-          style={{ position: "absolute", top: buttonSize * -0.23, left: buttonSize * 0.1, fontSize: buttonSize * 0.25 }}
-        >start</p>
-      </div>}
-      {isEnd &&
-        (theme.skin === THEMES.RETRO ? <>
-          <img src={theme.pointImg} className="end">
-          </img>
-
+      {isStart && (
+        <div className="start">
           <p
             className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
-            style={{ position: "absolute", top: buttonSize * 0.38, left: buttonSize * 0.25, fontSize: buttonSize * 0.25 }}
-          >end</p>
+            style={{
+              position: "absolute",
+              top: buttonSize * -0.23,
+              left: buttonSize * 0.1,
+              fontSize: buttonSize * 0.25,
+            }}
+          >
+            start
+          </p>
+        </div>
+      )}
+      {isEnd &&
+        (theme.skin === THEMES.RETRO ? (
+          <>
+            <img src={theme.pointImg} className="end"></img>
 
-        </> :
+            <p
+              className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
+              style={{
+                position: "absolute",
+                top: buttonSize * 0.38,
+                left: buttonSize * 0.25,
+                fontSize: buttonSize * 0.25,
+              }}
+            >
+              end
+            </p>
+          </>
+        ) : (
           <div className="end">
             <p
               className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
-              style={{ position: "absolute", top: buttonSize * 0.38, left: buttonSize * 0.25, fontSize: buttonSize * 0.25 }}
-            >end</p>
-          </div>)}
+              style={{
+                position: "absolute",
+                top: buttonSize * 0.38,
+                left: buttonSize * 0.25,
+                fontSize: buttonSize * 0.25,
+              }}
+            >
+              end
+            </p>
+          </div>
+        ))}
       {incomingDirection && <div className={`line incoming ${incomingDirection}`} />}
       {incomingDirection && outgoingDirection && <div className="dot" />}
       {outgoingDirection && <div className={`line outgoing ${outgoingDirection}`} />}

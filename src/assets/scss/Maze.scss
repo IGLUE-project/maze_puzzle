@@ -31,16 +31,31 @@
   position: absolute;
   width: 45%;
   height: 30%;
-  background-color: #3b5063;
+  background-color: #4560aa;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: #1e2b3c 10px solid;
+  border: #1f315e 10px solid;
   border-radius: 10px;
   z-index: -1;
+  button {
+    background-color: #1f315e;
+  }
 }
-
-
+.retro .victory {
+  background-color: #865e35cf;
+  border: #5a3e24aa 10px solid;
+  button {
+    background-color: #5a3e24aa;
+  }
+}
+.futuristic .victory {
+  background-color: #006518cf;
+  border: #001c00aa 10px solid;
+  button {
+    background-color: #001c00aa;
+  }
+}
 .correct {
   .Maze {
     display: none;
@@ -52,7 +67,7 @@
     opacity: 1;
     visibility: visible;
     transform: scale(1);
-    z-index: 5;
+    z-index: 15;
     div {
       padding: 5%;
       text-align: center;

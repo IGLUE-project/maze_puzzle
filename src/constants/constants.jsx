@@ -21,6 +21,7 @@ export const THEME_ASSETS = {
     resetImg: "",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
+    resetAudio: "sounds/reset.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.FUTURISTIC]: {
@@ -28,6 +29,7 @@ export const THEME_ASSETS = {
     resetImg: "images/futuristic_reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
+    resetAudio: "sounds/reset.wav",
     correctAudio: "sounds/correct.wav",
   },
   [THEMES.RETRO]: {
@@ -36,6 +38,7 @@ export const THEME_ASSETS = {
     resetImg: "images/retro_reset.png",
     clickAudio: "sounds/pencil.wav",
     failAudio: "sounds/wrong.wav",
+    resetAudio: "sounds/reset.wav",
     correctAudio: "sounds/correct.wav",
   },
 };
