@@ -49,7 +49,7 @@ export default function MainScreen({ lastButtonClicked, clickButton, resetButton
         className={`${config?.backgroundImg ? "image" : "frame"}`}
         style={{ width: size.width, height: size.height }}
       >
-        <div className="border-frame">
+        <div className="border-frame" >
           <Maze
             lastButtonClicked={lastButtonClicked}
             clickButton={ClickButton}
@@ -58,13 +58,22 @@ export default function MainScreen({ lastButtonClicked, clickButton, resetButton
             size={size}
             sendSolution={sendSolution}
           />
-          <div className="background"></div>
+          <div className="background" style={{
+            backgroundImage: `url(${config?.containerImg})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+              zIndex: 100,
+          }}></div>
         </div>
         {config?.resetImg ? (
-          <img src={config?.resetImg} draggable={false} className="reset" onClick={reset} />
+          <img src={config?.resetImg} draggable={false} className="reset" onClick={reset}
+          style={{ zIndex: 120,}} />
         ) : (
-          <div className="button-reset" onClick={reset}>
-            <div className="label" style={{ fontSize: size.width * 0.015 + "px" }}>
+          <div className="button-reset" onClick={reset} style={{   zIndex: 120}}>
+            <div className="label" style={{ 
+              fontSize: size.width * 0.015 + "px" ,
+           
+            }}>
               Reset
             </div>
           </div>
@@ -74,7 +83,11 @@ export default function MainScreen({ lastButtonClicked, clickButton, resetButton
           src={config?.backgroundImg}
           alt=""
           draggable={false}
-          style={{ width: size.width, height: size.height }}
+          style={{ 
+            width: size.width,
+            height: size.height,
+            zIndex: 50,
+           }}
         />
       </div>
     </div>

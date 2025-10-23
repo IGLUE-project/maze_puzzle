@@ -5,7 +5,7 @@ import MessageScreen from "./MessageScreen";
 export default function Maze({ lastButtonClicked, clickButton, mazeMap, theme, size, sendSolution }) {
   return (
     <>
-      <div className="Maze">
+      <div className="Maze" style={{zIndex: 120}}>
         {theme &&
           Array.from({ length: theme.mazeHeight }).map((_, y) => (
             <div className="row" key={y}>

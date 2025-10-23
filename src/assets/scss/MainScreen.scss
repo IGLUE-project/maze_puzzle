@@ -86,24 +86,11 @@
   }
 }
 
-.futuristic {
-  .background {
-    background-color: rgb(9, 10, 32);
-  }
-}
-.standard {
-  .background {
-    background-color: #b1b6c9;
-  }
-}
-.retro {
-  .background {
-    background-color: #865e35;
-  }
-}
+
 .retro {
   .reset {
     width: 12%;
+    right: 3%;
   }
 }
 
@@ -114,7 +101,7 @@
   z-index: 10;
   justify-content: center;
   position: absolute;
-  right: 4.5%;
+  right: 8%;
   aspect-ratio: 1;
   transition: filter 0.3s ease;
 
