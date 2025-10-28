@@ -41,12 +41,16 @@ export const THEME_ASSETS = {
   [THEMES.FUTURISTIC]: {
     backgroundImg: "images/futuristic_bg.png",
     containerImg: "images/futuristic_container.png",
-    pointImg: "images/flag.svg",
+    pointImg: () => flagIcon({ color: "#6100ac" }),
     resetImg: "images/futuristic_reset.png",
     clickAudio: "sounds/click_button.wav",
     failAudio: "sounds/wrong.wav",
     resetAudio: "sounds/reset.wav",
     correctAudio: "sounds/correct.wav",
+    mazePaddingTop: "0%",
+    mazePaddingBottom: "0%",
+    mazePaddingLeft: "0%",
+    mazePaddingRight: "0%",
   },
   [THEMES.RETRO]: {
     backgroundImg: "images/retro_bg.png",

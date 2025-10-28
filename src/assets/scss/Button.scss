@@ -78,10 +78,13 @@
     .dot {
       opacity: 0.2;
     }
-    .start,
-    end {
+    .start {
       opacity: 0.8;
       background-color: #cc5dff;
+    }
+    .end {
+      width: 50%;
+      height: 50%;
     }
   }
   &.standard {

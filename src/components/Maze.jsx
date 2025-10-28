@@ -19,7 +19,11 @@ export default function Maze({ lastButtonClicked, clickButton, mazeMap, theme, s
     <>
       <div
         className={`Maze ${hasBg ? "BgImg" : ""}`}
-        style={{ ...style, marginTop: theme.skin !== THEMES.RETRO ? "4%" : 0 }}
+        style={{
+          ...style,
+          marginTop: theme.skin === THEMES.STANDARD ? "4%" : 0,
+          marginRight: theme.skin === THEMES.FUTURISTIC ? "6%" : 0,
+        }}
       >
         {theme &&
           Array.from({ length: theme.mazeHeight }).map((_, y) => (

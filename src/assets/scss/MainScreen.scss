@@ -88,7 +88,15 @@
     }
   }
 }
-
+.futuristic {
+  .image .border-frame div.background {
+    width: 96%;
+    height: 98%;
+  }
+  .reset {
+    right: 8.5%;
+  }
+}
 .retro {
   .reset {
     width: 11%;

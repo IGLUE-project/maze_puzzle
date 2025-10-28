@@ -13,7 +13,8 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
       size.width / (mazeMap ? mazeMap.length : 1),
       size.height / (mazeMap[0] ? mazeMap[0].length : 1),
     );
-    setbuttonSize(_buttonSize * 0.75);
+    if (theme.skin === THEMES.FUTURISTIC) setbuttonSize(_buttonSize * 0.72);
+    else setbuttonSize(_buttonSize * 0.75);
   }, [size]);
 
   const pressButton = () => {
@@ -55,24 +56,29 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
     }
   }, [mazeMap]);
 
-  let marginValue;
-  switch (theme.skin) {
-    case "RETRO":
-      if (theme.mazeBgImg) marginValue = -1;
-      else marginValue = buttonSize * 0.03;
-      break;
-    case "STANDARD":
-      if (theme.mazeBgImg) marginValue = -1;
-      else marginValue = buttonSize * 0.04;
-      break;
-    case "FUTURISTIC":
-      marginValue = buttonSize * 0.01;
-      break;
+  let marginValue = -1;
+  if (!theme.mazeBgImg) {
+    switch (theme.skin) {
+      case "RETRO":
+        marginValue = buttonSize * 0.03;
+        break;
+      case "STANDARD":
+        marginValue = buttonSize * 0.04;
+        break;
+      case "FUTURISTIC":
+        marginValue = buttonSize * 0.001;
+        break;
+    }
   }
   return (
     <div
       onClick={pressButton}
-      style={{ height: buttonSize, width: buttonSize, margin: marginValue }}
+      style={{
+        height: buttonSize,
+        width: buttonSize,
+        margin: marginValue,
+        opacity: theme.skin === THEMES.FUTURISTIC && theme.mazeBgImg ? 0.7 : 1,
+      }}
       className={`Button ${pressed ? "pressed " : ""}${theme.skin.toLowerCase()}`}
     >
       {isStart && theme.showStart && (
