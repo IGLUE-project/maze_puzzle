@@ -62,6 +62,9 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
       case "RETRO":
         marginValue = buttonSize * 0.03;
         break;
+      case "TABLET":
+        marginValue = buttonSize * 0.04;
+        break;
       case "STANDARD":
         marginValue = buttonSize * 0.04;
         break;

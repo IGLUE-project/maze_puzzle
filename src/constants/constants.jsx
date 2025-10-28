@@ -21,12 +21,13 @@ export const THEMES = {
   FUTURISTIC: "FUTURISTIC",
   STANDARD: "STANDARD",
   RETRO: "RETRO",
+  TABLET: "TABLET",
 };
 
 export const THEME_ASSETS = {
-  [THEMES.STANDARD]: {
-    backgroundImg: "images/standard_bg.png",
-    containerImg: "images/standard_container.png",
+  [THEMES.TABLET]: {
+    backgroundImg: "images/tablet_bg.png",
+    containerImg: "images/tablet_container.png",
     pointImg: () => flagIcon({ color: "#002a77" }),
     resetImg: "",
     clickAudio: "sounds/click_button.wav",
@@ -65,6 +66,18 @@ export const THEME_ASSETS = {
     mazePaddingBottom: "4%",
     mazePaddingLeft: "10%",
     mazePaddingRight: "10%",
+  },
+  [THEMES.STANDARD]: {
+    mazeBgImg: "",
+    pointImg: () => flagIcon({ color: "#00ac2bff" }),
+    clickAudio: "sounds/click_button.wav",
+    failAudio: "sounds/wrong.wav",
+    resetAudio: "sounds/reset.wav",
+    correctAudio: "sounds/correct.wav",
+    mazePaddingTop: "0%",
+    mazePaddingBottom: "0%",
+    mazePaddingLeft: "0%",
+    mazePaddingRight: "0%",
   },
 };
 

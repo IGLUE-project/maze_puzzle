@@ -3,6 +3,30 @@
     border-radius: 0px;
   }
 }
+.BgImg .Button.tablet {
+  background-color: #4560aa3a;
+  margin: 2px;
+  box-shadow: inset 0px 0px 0px 1px #98abda;
+  &.pressed {
+    box-shadow: inset 0px 0px 0px 1px #98abda;
+
+    background-color: #4560aa3a;
+    .start {
+      background-color: #002a77;
+      opacity: 1;
+    }
+  }
+
+  .line,
+  .dot {
+    background-color: #002a77;
+    opacity: 1;
+  }
+  .start {
+    background-color: #6da0ff;
+    opacity: 1;
+  }
+}
 .BgImg .Button.standard {
   background-color: #4560aa3a;
   margin: 2px;
@@ -85,6 +109,25 @@
     .end {
       width: 50%;
       height: 50%;
+    }
+  }
+  &.tablet {
+    background-color: #4560aa;
+    margin: 2px;
+    box-shadow: inset 0px 0px 0px 1px #464f66;
+    &.pressed {
+      box-shadow: inset 0px 0px 0px 10px #101930;
+      background-color: #1f315e;
+    }
+    .end {
+      width: 50%;
+      height: 50%;
+    }
+
+    .line,
+    .start,
+    .dot {
+      background-color: #a3c0e2;
     }
   }
   &.standard {

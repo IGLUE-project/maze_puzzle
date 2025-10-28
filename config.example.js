@@ -2,7 +2,7 @@
 
 export let ESCAPP_APP_SETTINGS = {
   //Settings that can be specified by the authors
-  skin: "FUTURISTIC", //skin can be "RETRO", "STANDARD" or "FUTURISTIC".
+  skin: "FUTURISTIC", //skin can be "RETRO", "STANDARD", "TABLET" or "FUTURISTIC".
   //backgroundImg: "NONE", //background can be "NONE" or a URL.
   actionAfterSolve: "SHOW_MESSAGE", //actionAfterSolve can be "NONE" or "SHOW_MESSAGE".
   message: "¡Has superado el reto! presiona continuar para seguir jugando.",
@@ -15,8 +15,8 @@ export let ESCAPP_APP_SETTINGS = {
   // mazePaddingBottom: "4%", //Padding bottom of the maze inside the container
   // mazePaddingLeft: "10%", //Padding left of the maze inside the container
   // mazePaddingRight: "10%", //Padding right of the maze inside the container
-  showStart: true, //Whether to show the start point
-  showEnd: true, //Whether to show the end point
+  showStart: true, //Show the start point
+  showEnd: true, //Show the end point
   mazeBgImg: "",
 
   //Settings that will be automatically specified by the Escapp server
