@@ -13,22 +13,21 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
       size.width / (mazeMap ? mazeMap.length : 1),
       size.height / (mazeMap[0] ? mazeMap[0].length : 1),
     );
-    setbuttonSize(_buttonSize * 0.5);
+    setbuttonSize(_buttonSize * 0.75);
   }, [size]);
 
   const pressButton = () => {
-    if (lastButtonClicked.isEndButton) {
+    if ((lastButtonClicked.isEndButton && theme.showEnd) || pressed) {
       return;
     }
 
-    if (!pressed && isStart) {
+    if (Object.keys(lastButtonClicked).length === 0 && (isStart || !theme.showStart)) {
       clickButton({ x, y });
     } else if (
-      !pressed &&
-      ((lastButtonClicked.x === x && lastButtonClicked.y === y + 1) ||
-        (lastButtonClicked.x === x && lastButtonClicked.y === y - 1) ||
-        (lastButtonClicked.x === x + 1 && lastButtonClicked.y === y) ||
-        (lastButtonClicked.x === x - 1 && lastButtonClicked.y === y))
+      (lastButtonClicked.x === x && lastButtonClicked.y === y + 1) ||
+      (lastButtonClicked.x === x && lastButtonClicked.y === y - 1) ||
+      (lastButtonClicked.x === x + 1 && lastButtonClicked.y === y) ||
+      (lastButtonClicked.x === x - 1 && lastButtonClicked.y === y)
     ) {
       setIncomingDirection(getDirection(lastButtonClicked));
       clickButton({ x, y });
@@ -59,10 +58,12 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
   let marginValue;
   switch (theme.skin) {
     case "RETRO":
-      marginValue = -1;
+      if (theme.mazeBgImg) marginValue = -1;
+      else marginValue = buttonSize * 0.03;
       break;
     case "STANDARD":
-      marginValue = buttonSize * 0.05;
+      if (theme.mazeBgImg) marginValue = -1;
+      else marginValue = buttonSize * 0.04;
       break;
     case "FUTURISTIC":
       marginValue = buttonSize * 0.01;
@@ -74,54 +75,49 @@ export default function Button({ isStart, isEnd, x, y, lastButtonClicked, clickB
       style={{ height: buttonSize, width: buttonSize, margin: marginValue }}
       className={`Button ${pressed ? "pressed " : ""}${theme.skin.toLowerCase()}`}
     >
-      {isStart && (
+      {isStart && theme.showStart && (
         <div className="start">
           <p
-            className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
             style={{
               position: "absolute",
               top: buttonSize * -0.23,
               left: buttonSize * 0.1,
               fontSize: buttonSize * 0.25,
             }}
-          >
-            start
-          </p>
+          ></p>
         </div>
       )}
-      {isEnd &&
-        (theme.skin === THEMES.RETRO ? (
-          <>
-            <img src={theme.pointImg} className="end"></img>
+      {isEnd && theme.showEnd && (
+        <>
+          {typeof theme.pointImg === "function" ? (
+            <div className="end">{theme.pointImg()} </div>
+          ) : (
+            <img src={theme.pointImg} className="end" />
+          )}
 
-            <p
-              className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
-              style={{
-                position: "absolute",
-                top: buttonSize * 0.38,
-                left: buttonSize * 0.25,
-                fontSize: buttonSize * 0.25,
-              }}
-            >
-              end
-            </p>
-          </>
-        ) : (
-          <div className="end">
-            <p
-              className={`text-instr text-start ${theme?.skin.toLowerCase()} `}
-              style={{
-                position: "absolute",
-                top: buttonSize * 0.38,
-                left: buttonSize * 0.25,
-                fontSize: buttonSize * 0.25,
-              }}
-            >
-              end
-            </p>
-          </div>
-        ))}
+          <p
+            style={{
+              position: "absolute",
+              top: buttonSize * 0.38,
+              left: buttonSize * 0.25,
+              fontSize: buttonSize * 0.25,
+            }}
+          ></p>
+        </>
+      )}
       {incomingDirection && <div className={`line incoming ${incomingDirection}`} />}
+      {!incomingDirection && pressed && !theme.showStart && (
+        <div className="start">
+          <p
+            style={{
+              position: "absolute",
+              top: buttonSize * -0.23,
+              left: buttonSize * 0.1,
+              fontSize: buttonSize * 0.25,
+            }}
+          ></p>
+        </div>
+      )}
       {incomingDirection && outgoingDirection && <div className="dot" />}
       {outgoingDirection && <div className={`line outgoing ${outgoingDirection}`} />}
     </div>

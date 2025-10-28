@@ -3,12 +3,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 120;
+  background-size: 100% 100%;
 
   .row {
     display: flex;
     justify-content: center;
   }
+}
+.retro .Maze {
+  background-color: #ce9e00;
+  padding: 2%;
+}
+.retro .Maze.BgImg {
+  background-color: transparent;
 }
 .fail .Maze *,
 .fail .Maze {
@@ -67,26 +78,11 @@
     opacity: 1;
     visibility: visible;
     transform: scale(1);
-    z-index: 15;
+    z-index: 150;
     div {
       padding: 5%;
       text-align: center;
     }
-  }
-}
-
-.text-instr {
-  width: 100%;
-  text-transform: uppercase;
-  font-weight: bold;
-  &.retro {
-    color: rgb(37, 5, 9);
-  }
-  &.futuristic {
-    color: rgb(203, 185, 243);
-  }
-  &.basic {
-    color: rgb(68, 67, 70);
   }
 }
 

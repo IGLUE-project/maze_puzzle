@@ -1,14 +1,29 @@
+import { THEMES } from "../constants/constants";
 import "./../assets/scss/Maze.scss";
 import Button from "./Button";
 import MessageScreen from "./MessageScreen";
 
 export default function Maze({ lastButtonClicked, clickButton, mazeMap, theme, size, sendSolution }) {
+  const hasBg = !!theme?.mazeBgImg;
+
+  const style = hasBg
+    ? {
+        backgroundImage: `url(${theme.mazeBgImg})`,
+        width: size.width * 0.75,
+        height: size.height * 0.75,
+        padding: `${theme.mazePaddingTop} ${theme.mazePaddingRight} ${theme.mazePaddingBottom} ${theme.mazePaddingLeft}`,
+      }
+    : {};
+
   return (
     <>
-      <div className="Maze" style={{zIndex: 120}}>
+      <div
+        className={`Maze ${hasBg ? "BgImg" : ""}`}
+        style={{ ...style, marginTop: theme.skin !== THEMES.RETRO ? "4%" : 0 }}
+      >
         {theme &&
           Array.from({ length: theme.mazeHeight }).map((_, y) => (
-            <div className="row" key={y}>
+            <div className="row" key={y} style={{ zIndex: "150" }}>
               {Array.from({ length: theme.mazeWidth }).map((_, x) => (
                 <Button
                   key={x + " " + y}

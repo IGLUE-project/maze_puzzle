@@ -167,7 +167,7 @@ export default function App() {
             Utils.log("Error in checkNextPuzzle", e);
           }
         }
-      } else {
+      } else if (appSettings.showEnd) {
         failAudio.play();
         setFailClass("fail");
         setSolution([]);

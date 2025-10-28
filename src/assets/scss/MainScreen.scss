@@ -6,8 +6,8 @@
   width: 100%;
 
   .border-frame {
-    width: 70%;
-    height: 70vh;
+    width: 100%;
+    height: 100vh;
     border: 20px solid #132633;
     border-radius: 15px;
     background-color: #555;
@@ -39,22 +39,25 @@
   }
 
   .border-frame {
-    width: 70%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 
     div.background {
-      width: 90%;
-      height: 90%;
+      width: 110%;
+      height: 98%;
       border-radius: 15px;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      z-index: 1;
       position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
   }
 }
@@ -86,11 +89,10 @@
   }
 }
 
-
 .retro {
   .reset {
-    width: 12%;
-    right: 3%;
+    width: 11%;
+    right: 0%;
   }
 }
 
@@ -126,8 +128,8 @@
   color: #000000;
   cursor: pointer;
   position: absolute;
-  right: 23%;
-  top: 14%;
+  right: 15%;
+  top: 10%;
   transition: all 0.2s;
 
   box-shadow: 0 0 0 0 #b1b6c9, 0 0 0 0 #1c2233, 0 0 0 0 #b1b6c9, 0 0 0 0 #1c2233;
